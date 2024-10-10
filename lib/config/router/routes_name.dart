@@ -1,3 +1,1 @@
-abstract class RoutesName {
- 
-}
+abstract class RoutesName {}
