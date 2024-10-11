@@ -13,6 +13,10 @@ import 'package:injectable/injectable.dart' as _i526;
 
 import '../../features/forget_password/data/api/forget_password_api_manager.dart'
     as _i617;
+import '../../features/forget_password/data/data_source/forget_password_data_source.dart'
+    as _i246;
+import '../../features/forget_password/data/data_source/forget_password_data_source_impl.dart'
+    as _i164;
 import '../cache/shared_preferences.dart' as _i254;
 import '../networking/api_consumer.dart' as _i681;
 import '../networking/dio_consumer.dart' as _i1042;
@@ -33,6 +37,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i681.ApiConsumer>(() => _i1042.DioConsumer());
     gh.factory<_i617.ForgetPasswordApiManager>(
         () => _i617.ForgetPasswordApiManager(gh<_i681.ApiConsumer>()));
+    gh.factory<_i246.ForgetPasswordDataSource>(() =>
+        _i164.ForgetPasswordDataSourceImpl(
+            gh<_i617.ForgetPasswordApiManager>()));
     return this;
   }
 }
