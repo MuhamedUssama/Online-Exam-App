@@ -21,7 +21,6 @@ import '../../features/login/data/repository_impl/login_repository_impl.dart'
 import '../../features/login/domain/repository/login_repository.dart' as _i312;
 import '../../features/login/domain/usecases/login_usecase.dart' as _i420;
 import '../../features/login/ui/cubit/login_view_model.dart' as _i362;
-import '../../features/sign_up/data/api/sign_up_api_manger.dart' as _i474;
 import '../cache/shared_preferences.dart' as _i254;
 import '../networking/api_consumer.dart' as _i681;
 import '../networking/dio_consumer.dart' as _i1042;
@@ -39,7 +38,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.singleton<_i254.SharedPreferencesHelper>(
         () => _i254.SharedPreferencesHelper());
-    gh.singleton<_i474.SignUpApiManger>(() => _i474.SignUpApiManger());
     gh.factory<_i681.ApiConsumer>(() => _i1042.DioConsumer());
     gh.singleton<_i707.LoginApiManger>(
         () => _i707.LoginApiManger(gh<_i681.ApiConsumer>()));
