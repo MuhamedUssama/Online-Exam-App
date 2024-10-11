@@ -18,12 +18,20 @@ class EmailVerificationViewModel extends Cubit<EmailVerificationStates> {
   var formKey = GlobalKey<FormState>();
   TextEditingController codeController = TextEditingController();
 
-  Future<void> verifyEmail() async {
+  // Already i have one method in this view model so i don't need this approch but just for practice
+  void doIntent(VerificationAction action) {
+    switch (action) {
+      case EmailVerificationAction():
+        _verifyEmail();
+    }
+  }
+
+  Future<void> _verifyEmail() async {
     if (formKey.currentState?.validate() == true) {
       emit(EmailVerificationLoadingState('Loading..'));
 
       Result<EmailVerificationEntity?> result =
-          await usecase.invoke((codeController.text).toString());
+          await usecase.invoke(codeController.text);
 
       switch (result) {
         case Success<EmailVerificationEntity?>():

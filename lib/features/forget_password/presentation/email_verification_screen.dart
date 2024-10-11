@@ -123,8 +123,8 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
               ),
               SizedBox(height: 48.h),
               ElevatedButton(
-                onPressed: () async {
-                  await viewModel.verifyEmail();
+                onPressed: () {
+                  viewModel.doIntent(EmailVerificationAction());
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: ColorsManager.baseBlue,
