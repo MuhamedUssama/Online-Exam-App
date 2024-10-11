@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_exam_app/config/theme/app_colors.dart';
 
 import 'font_weight_helper.dart';
 
@@ -80,5 +81,10 @@ abstract class TextStyles {
   static TextStyle font15DarkBlueMedium = TextStyle(
     fontSize: 15.sp,
     fontWeight: FontWeightHelper.medium,
+  );
+  static TextStyle elevatedButtonWhiteMedium = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeightHelper.medium,
+    color: Colors.white,
   );
 }
