@@ -11,6 +11,8 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../features/forget_password/data/api/forget_password_api_manager.dart'
+    as _i617;
 import '../cache/shared_preferences.dart' as _i254;
 import '../networking/api_consumer.dart' as _i681;
 import '../networking/dio_consumer.dart' as _i1042;
@@ -29,6 +31,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i254.SharedPreferencesHelper>(
         () => _i254.SharedPreferencesHelper());
     gh.factory<_i681.ApiConsumer>(() => _i1042.DioConsumer());
+    gh.factory<_i617.ForgetPasswordApiManager>(
+        () => _i617.ForgetPasswordApiManager(gh<_i681.ApiConsumer>()));
     return this;
   }
 }
