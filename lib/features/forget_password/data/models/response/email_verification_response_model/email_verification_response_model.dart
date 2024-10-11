@@ -8,7 +8,7 @@ part 'email_verification_response_model.g.dart';
 class EmailVerificationResponseModel {
   String? status;
   String? message;
-  String? code;
+  int? code;
   String? stack;
 
   EmailVerificationResponseModel(

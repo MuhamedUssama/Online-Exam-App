@@ -1,5 +1,13 @@
 import '../../../domain/entities/email_verification_entity/email_verification_entity.dart';
 
+sealed class Action {}
+
+class EmailVerificationAction extends Action {
+  String email;
+  String password;
+  EmailVerificationAction(this.email, this.password);
+}
+
 sealed class EmailVerificationStates {}
 
 class EmailVerificationInitialState extends EmailVerificationStates {}

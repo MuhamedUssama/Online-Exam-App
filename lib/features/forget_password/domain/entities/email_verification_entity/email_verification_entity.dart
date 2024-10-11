@@ -6,7 +6,7 @@ part 'email_verification_entity.g.dart';
 class EmailVerificationEntity {
   String? status;
   String? message;
-  String? code;
+  int? code;
   String? stack;
 
   EmailVerificationEntity({this.status, this.message, this.code, this.stack});

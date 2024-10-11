@@ -27,6 +27,8 @@ import '../../features/forget_password/domain/usecases/reset_password_usecase.da
     as _i966;
 import '../../features/forget_password/domain/usecases/verify_email_usecase.dart'
     as _i673;
+import '../../features/forget_password/presentation/view_models/email_verification_view_model/email_verification_view_model.dart'
+    as _i110;
 import '../../features/forget_password/presentation/view_models/forget_password_view_model/forget_password_view_model.dart'
     as _i907;
 import '../cache/shared_preferences.dart' as _i254;
@@ -61,6 +63,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i966.ResetPasswordUsecase(gh<_i710.ForgetPasswordRepository>()));
     gh.factory<_i673.VerifyEmailUsecase>(
         () => _i673.VerifyEmailUsecase(gh<_i710.ForgetPasswordRepository>()));
+    gh.factory<_i110.EmailVerificationViewModel>(
+        () => _i110.EmailVerificationViewModel(gh<_i673.VerifyEmailUsecase>()));
     gh.factory<_i907.ForgetPasswordViewModel>(
         () => _i907.ForgetPasswordViewModel(gh<_i535.ForgetPasswordUsecase>()));
     return this;

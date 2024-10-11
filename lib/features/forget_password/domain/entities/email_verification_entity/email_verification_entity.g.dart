@@ -11,7 +11,7 @@ EmailVerificationEntity _$EmailVerificationEntityFromJson(
     EmailVerificationEntity(
       status: json['status'] as String?,
       message: json['message'] as String?,
-      code: json['code'] as String?,
+      code: (json['code'] as num?)?.toInt(),
       stack: json['stack'] as String?,
     );
 

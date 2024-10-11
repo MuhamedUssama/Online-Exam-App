@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'features/forget_password/presentation/email_verification_screen.dart';
 import 'features/forget_password/presentation/forget_password_screen.dart';
 
 class Steller extends StatelessWidget {
@@ -14,7 +15,7 @@ class Steller extends StatelessWidget {
       splitScreenMode: true,
       child: MaterialApp(
         title: 'Steller App',
-        home: ForgetPasswordScreen(),
+        home: EmailVerificationScreen(),
       ),
     );
   }
