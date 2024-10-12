@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../config/theme/app_colors.dart';
+import '../../../config/theme/test_style.dart';
 import '../../../core/di/di.dart';
 import '../../../core/utils/dialog_utils.dart';
 import 'view_models/email_verification_view_model/email_verification_states.dart';
 import 'view_models/email_verification_view_model/email_verification_view_model.dart';
+import 'widgets/custom_otp_widget.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
   const EmailVerificationScreen({super.key});
@@ -27,9 +28,10 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Password', style: TextStyles.font20BaseDarkMedium),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child:
@@ -58,88 +60,45 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
             }
           },
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
                 'Email verification',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.w500,
-                ),
+                style: TextStyles.font18BaseDarkMedium,
               ),
               SizedBox(height: 16.h),
               Text(
                 'Please enter your code that send to your\n email address ',
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w400,
-                ),
+                style: TextStyles.font14GreyRegular,
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 32.h),
               Form(
                 key: viewModel.formKey,
-                child: TextFormField(
+                child: CustomOtpWidget(
                   controller: viewModel.codeController,
-                  validator: (value) {
-                    if (value == null || value.trim().isEmpty) {
-                      return "Please enter your email address";
-                    }
-
-                    return null;
+                  onComplete: () {
+                    viewModel.doIntent(EmailVerificationAction());
                   },
-                  decoration: InputDecoration(
-                    labelText: 'Email',
-                    labelStyle: TextStyle(
-                      color: ColorsManager.grey,
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w400,
-                    ),
-                    hintText: 'Enter Your Email',
-                    hintStyle: TextStyle(
-                      color: ColorsManager.placeHolder,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400,
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: ColorsManager.baseBlack,
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(4.r),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: ColorsManager.baseBlack,
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(4.r),
-                    ),
-                  ),
                 ),
               ),
-              SizedBox(height: 48.h),
-              ElevatedButton(
-                onPressed: () {
-                  viewModel.doIntent(EmailVerificationAction());
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: ColorsManager.baseBlue,
-                  fixedSize: Size.fromWidth(width),
-                  padding: EdgeInsetsDirectional.symmetric(vertical: 12.h),
-                ),
-                child: Text(
-                  'Continue',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w500,
+              SizedBox(height: 32.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Didn't receive code?",
+                    style: TextStyles.font16BaseBlackRegular,
                   ),
-                ),
-              ),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      "Resend",
+                      style: TextStyles.font16BaseBlueRegular,
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
         ),
