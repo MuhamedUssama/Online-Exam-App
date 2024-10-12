@@ -1,5 +1,6 @@
 
-import '../../data_models/models/User.dart';
+
+import '../../data/models/User.dart';
 
 /// id : "67001692f87c48663aee3ad7"
 /// username : "elevate"

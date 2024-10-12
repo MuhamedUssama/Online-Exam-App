@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam_app/config/theme/app_colors.dart';
 import 'package:online_exam_app/core/utils/dialog_utils.dart';
-import 'package:online_exam_app/features/login/ui/cubit/login_states.dart';
 
-import '../../../config/theme/test_style.dart';
-import '../../../core/di/di.dart';
-import '../../../core/utils/validation_utils.dart';
-import '../../../core/widgets/custom_form_field.dart';
+
+import '../../../../config/router/routes_name.dart';
+import '../../../../config/theme/test_style.dart';
+import '../../../../core/di/di.dart';
+import '../../../../core/utils/validation_utils.dart';
+import '../../../../core/widgets/custom_form_field.dart';
+
+import 'cubit/login_states.dart';
 import 'cubit/login_view_model.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -34,9 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         body: BlocListener<LoginViewModel,LoginStates>(
           listenWhen: (previous, current) {
-            if (previous is LoginSuccessState){
-              Navigator.pop(context);
-            }
+
             if(current is LoginLoadingState||current is LoginSuccessState||current is LoginErrorState){
               return true;
             }
@@ -49,18 +50,15 @@ class _LoginScreenState extends State<LoginScreen> {
             }
             else if (state is LoginErrorState){
               DialogUtils.hideLoading(context);
-            DialogUtils.showMessage(context, contentMessage: state.errorMessage??'error');
+            DialogUtils.showMessage(context, contentMessage: state.errorMessage??"Please Try Again",title: 'SomeThing went Wrong');
             }
 
 
               else if (state is LoginSuccessState){
                 DialogUtils.hideLoading(context);
                 print(state.user?.email);
-                if (state.user?.email   == null){
-                  DialogUtils.showMessage(context, contentMessage: "error");
-                }else{
-                DialogUtils.showMessage(context, contentMessage: 'good');
-              }}
+                DialogUtils.showMessage(context, contentMessage: 'User Logged In Successfully',title: 'Success');
+              }
 
 
 
@@ -102,6 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: CustomFormFiled(
                         hintText: 'Enter Your Password',
                         controller:password ,
+                        secureText: true,
                         validator: (text){
                           if(text == null||text.trim().isEmpty){
                             return 'Please Enter Password';
@@ -118,20 +117,36 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
 
+
               BlocBuilder<LoginViewModel,LoginStates>(
                   builder:(context, state) {
 
-                    return Row(
-                          children: [
-                            Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: ElevatedButton(onPressed: (){
-                                    login();
-                                  }, child: Text('Login',style:TextStyles.elevatedButtonWhiteMedium ,),),
-                                )),
-                          ],
-                        );
+                    return
+                      Column(
+                        children: [
+                          Row(
+                              children: [
+                                Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: ElevatedButton(onPressed: (){
+                                        login();
+                                      }, child: Text('Login',style:TextStyles.elevatedButtonWhiteMedium ,),),
+                                    )),
+                              ],
+                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("Don't have an account?",style: TextStyles.font16BlackRegular,),
+                              TextButton(
+                                onPressed: (){
+                                  Navigator.pushReplacementNamed(context, RoutesName.signUpScreen);
+                                }, child: Text('Sign Up',style:TextStyles.textButtonBaseBlueRegular),),
+                            ],
+                          ),
+                        ],
+                      );
 
                   },
 
@@ -155,12 +170,22 @@ class _LoginScreenState extends State<LoginScreen> {
     }
     return isValid;
 
+  }  bool isValidField(){
+    bool isValid = true;
+    if (
+        email.text == ''||
+        password.text == ''
+       ){
+      isValid = false;
+    }
+    return isValid;
   }
 
   void login (){
     if(!isValidForm())return;
+    if(!isValidField())return;
 
-    viewModel.doAction(intent:LoginIntent('yousef.gamal677@gmail.com', 'Yousef@123'));
+    viewModel.doAction(intent:LoginIntent(email.text, password.text));
 
 
 

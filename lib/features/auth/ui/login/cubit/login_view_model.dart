@@ -1,10 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/core/results/result.dart';
-import 'package:online_exam_app/features/login/domain/usecases/login_usecase.dart';
-import 'package:online_exam_app/features/login/ui/cubit/login_states.dart';
 
-import '../../../data_models/models/User.dart';
+
+import '../../../data/models/User.dart';
+
+import '../../../domain/usecases/login_usecase.dart';
+import 'login_states.dart';
+
 @injectable
 class LoginViewModel extends Cubit<LoginStates>{
   LoginUsecase usecase;
@@ -24,9 +27,7 @@ class LoginViewModel extends Cubit<LoginStates>{
     switch (result) {
 
       case Success<User?>():{
-        if (result.data ==  ''){
-          emit(LoginErrorState('error'));
-        }
+
         emit(LoginSuccessState(result.data));
       }
       case Fail<User?>():{

@@ -1,5 +1,6 @@
 
-import '../../../data_models/models/User.dart';
+
+import '../../../data/models/User.dart';
 
 sealed class LoginStates{}
 class LoginLoadingState extends LoginStates{}
