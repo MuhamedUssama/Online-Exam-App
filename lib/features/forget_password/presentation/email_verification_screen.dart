@@ -8,6 +8,7 @@ import '../../../core/utils/dialog_utils.dart';
 import 'view_models/email_verification_view_model/email_verification_states.dart';
 import 'view_models/email_verification_view_model/email_verification_view_model.dart';
 import 'widgets/custom_otp_widget.dart';
+import 'widgets/screen_description_widget.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
   const EmailVerificationScreen({super.key});
@@ -71,15 +72,10 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                'Email verification',
-                style: TextStyles.font18BaseDarkMedium,
-              ),
-              SizedBox(height: 16.h),
-              Text(
-                'Please enter your code that send to your\n email address ',
-                style: TextStyles.font14GreyRegular,
-                textAlign: TextAlign.center,
+              const ScreenDescriptionWidget(
+                title: 'Email verification',
+                description:
+                    'Please enter your code that send to your\n email address ',
               ),
               SizedBox(height: 32.h),
               Form(

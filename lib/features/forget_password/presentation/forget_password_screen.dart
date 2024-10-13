@@ -10,6 +10,7 @@ import '../../../core/widgets/custom_form_field.dart';
 import 'email_verification_screen.dart';
 import 'view_models/forget_password_view_model/forget_password_states.dart';
 import 'view_models/forget_password_view_model/forget_password_view_model.dart';
+import 'widgets/screen_description_widget.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
   const ForgetPasswordScreen({super.key});
@@ -70,15 +71,10 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                'Forget Password',
-                style: TextStyles.font18BaseDarkMedium,
-              ),
-              SizedBox(height: 16.h),
-              Text(
-                'Please enter your email associated to\n your account',
-                style: TextStyles.font14GreyRegular,
-                textAlign: TextAlign.center,
+              const ScreenDescriptionWidget(
+                title: 'Forget Password',
+                description:
+                    'Please enter your email associated to\n your account',
               ),
               SizedBox(height: 32.h),
               Form(
