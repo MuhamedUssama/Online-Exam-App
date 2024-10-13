@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_exam_app/config/theme/app_colors.dart';
 
 import '../../../config/theme/test_style.dart';
 import '../../../core/di/di.dart';
@@ -10,6 +9,7 @@ import '../../../core/widgets/custom_form_field.dart';
 import 'email_verification_screen.dart';
 import 'view_models/forget_password_view_model/forget_password_states.dart';
 import 'view_models/forget_password_view_model/forget_password_view_model.dart';
+import 'widgets/custom_continue_button.dart';
 import 'widgets/screen_description_widget.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
@@ -98,23 +98,12 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                 ),
               ),
               SizedBox(height: 48.h),
-              ElevatedButton(
-                onPressed: () {
+              CustomContinueButton(
+                width: width,
+                text: 'Continue',
+                onPresed: () {
                   viewModel.doIntent(ForgetPasswordAction());
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: ColorsManager.baseBlue,
-                  fixedSize: Size.fromWidth(width),
-                  padding: EdgeInsetsDirectional.symmetric(vertical: 12.h),
-                ),
-                child: Text(
-                  'Continue',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
               ),
             ],
           ),

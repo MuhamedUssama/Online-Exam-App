@@ -4,14 +4,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../config/theme/app_colors.dart';
 import '../../../../config/theme/test_style.dart';
 
-class CustomCompleteButton extends StatelessWidget {
+class CustomContinueButton extends StatelessWidget {
   final double width;
+  final String text;
   final Function onPresed;
 
-  const CustomCompleteButton({
+  const CustomContinueButton({
     super.key,
     required this.width,
     required this.onPresed,
+    required this.text,
   });
 
   @override
@@ -26,7 +28,7 @@ class CustomCompleteButton extends StatelessWidget {
         padding: EdgeInsetsDirectional.symmetric(vertical: 12.h),
       ),
       child: Text(
-        'Continue',
+        text,
         style: TextStyles.font16WhiteMedium,
       ),
     );
