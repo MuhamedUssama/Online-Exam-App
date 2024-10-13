@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../config/theme/test_style.dart';
 import '../../../core/di/di.dart';
 import '../../../core/utils/dialog_utils.dart';
+import 'reset_password_screen.dart';
 import 'view_models/email_verification_view_model/email_verification_states.dart';
 import 'view_models/email_verification_view_model/email_verification_view_model.dart';
 import 'widgets/custom_otp_widget.dart';
@@ -66,6 +67,14 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 contentMessage:
                     "Check your email please, Code resent successfully.",
                 posActionName: "Ok",
+                posActionFunction: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ResetPasswordScreen(),
+                    ),
+                  );
+                },
               );
             }
           },
