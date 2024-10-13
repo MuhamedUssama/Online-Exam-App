@@ -17,6 +17,9 @@ class ResetPasswordViewModel extends Cubit<ResetPasswordStates> {
   ResetPasswordViewModel(this.usecase)
       : super(ResetPasswordStatesInitialState());
 
+  bool isObscureNewPassword = true;
+  bool isObscureConfirmPassword = true;
+
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   String email = SharedPreferencesHelper.getString(

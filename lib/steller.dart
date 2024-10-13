@@ -16,7 +16,7 @@ class Steller extends StatelessWidget {
       child: MaterialApp(
         title: 'Steller App',
         debugShowCheckedModeBanner: false,
-        initialRoute: RoutesName.resetPasswordScreen,
+        initialRoute: RoutesName.forgetPasswordScreen,
         onGenerateRoute: (settings) => AppRouters.onGenerate(settings),
       ),
     );

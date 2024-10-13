@@ -15,6 +15,7 @@ class CustomFormFiled extends StatelessWidget {
   int lines;
   TextStyle? style;
   String? initial;
+  Widget? suffixIcon;
 
   CustomFormFiled({
     super.key,
@@ -27,6 +28,7 @@ class CustomFormFiled extends StatelessWidget {
     this.lines = 1,
     this.style,
     this.initial,
+    this.suffixIcon,
   });
 
   @override
@@ -40,6 +42,8 @@ class CustomFormFiled extends StatelessWidget {
       keyboardType: keyboardType,
       style: style,
       decoration: InputDecoration(
+        suffixIcon: suffixIcon,
+        suffixIconColor: ColorsManager.grey,
         hintText: hintText,
         hintStyle: TextStyles.font14PlaceHolderRegular,
         labelText: labelText,

@@ -58,6 +58,14 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 contentMessage:
                     "Check your email please, we will send to you a verification code in 60s.",
                 posActionName: "Ok",
+                posActionFunction: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ResetPasswordScreen(),
+                    ),
+                  );
+                },
               );
             } else if (state is EmailVerificationResentCodeSuccesState) {
               DialogUtils.hideLoading(context);
