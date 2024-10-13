@@ -57,6 +57,15 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                     "Check your email please, we will send to you a verification code in 60s.",
                 posActionName: "Ok",
               );
+            } else if (state is EmailVerificationResentCodeSuccesState) {
+              DialogUtils.hideLoading(context);
+              DialogUtils.showMessage(
+                context,
+                title: "Successfully",
+                contentMessage:
+                    "Check your email please, Code resent successfully.",
+                posActionName: "Ok",
+              );
             }
           },
           child: Column(

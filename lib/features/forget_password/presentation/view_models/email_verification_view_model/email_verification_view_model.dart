@@ -72,7 +72,7 @@ class EmailVerificationViewModel extends Cubit<EmailVerificationStates> {
     switch (result) {
       case Success<ForgetPasswordEntity?>():
         {
-          emit(EmailVerificationResentCodeState(result.data));
+          emit(EmailVerificationResentCodeSuccesState(result.data));
           break;
         }
       case Fail<ForgetPasswordEntity?>():

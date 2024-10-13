@@ -26,7 +26,7 @@ class EmailVerificationSuccessState extends EmailVerificationStates {
   EmailVerificationSuccessState(this.response);
 }
 
-class EmailVerificationResentCodeState extends EmailVerificationStates {
+class EmailVerificationResentCodeSuccesState extends EmailVerificationStates {
   ForgetPasswordEntity? response;
-  EmailVerificationResentCodeState(this.response);
+  EmailVerificationResentCodeSuccesState(this.response);
 }
