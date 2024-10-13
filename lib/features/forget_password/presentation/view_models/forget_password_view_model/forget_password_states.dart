@@ -1,5 +1,9 @@
 import '../../../domain/entities/forget_password_entity/forget_passowrd_entity.dart';
 
+sealed class ForgetPasswordActions {}
+
+class ForgetPasswordAction extends ForgetPasswordActions {}
+
 sealed class ForgetPasswordStates {}
 
 class ForgetPasswordInitialState extends ForgetPasswordStates {}

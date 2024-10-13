@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../../config/theme/app_colors.dart';
+import '../../config/theme/test_style.dart';
+
 typedef Validator = String? Function(String?);
 
 class CustomFormFiled extends StatelessWidget {
-  String hintText;
+  final String hintText;
+  final String labelText;
   TextInputType keyboardType;
   bool secureText;
   Validator? validator;
@@ -11,15 +15,19 @@ class CustomFormFiled extends StatelessWidget {
   int lines;
   TextStyle? style;
   String? initial;
-  CustomFormFiled(
-      {required this.hintText,
-      this.keyboardType = TextInputType.text,
-      this.secureText = false,
-      this.validator,
-      this.controller,
-      this.lines = 1,
-      this.style,
-      this.initial});
+
+  CustomFormFiled({
+    super.key,
+    required this.hintText,
+    required this.labelText,
+    this.keyboardType = TextInputType.text,
+    this.secureText = false,
+    this.validator,
+    this.controller,
+    this.lines = 1,
+    this.style,
+    this.initial,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +40,15 @@ class CustomFormFiled extends StatelessWidget {
       keyboardType: keyboardType,
       style: style,
       decoration: InputDecoration(
-          labelText: hintText,
-          border: OutlineInputBorder(borderSide: BorderSide(width: 2))),
+        hintText: hintText,
+        hintStyle: TextStyles.font14PlaceHolderRegular,
+        labelText: labelText,
+        errorBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: ColorsManager.errorColor)),
+        focusedErrorBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: ColorsManager.errorColor)),
+        border: const OutlineInputBorder(borderSide: BorderSide(width: 2)),
+      ),
     );
   }
 }

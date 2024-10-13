@@ -6,6 +6,7 @@ import 'package:online_exam_app/config/theme/app_colors.dart';
 import '../../../config/theme/test_style.dart';
 import '../../../core/di/di.dart';
 import '../../../core/utils/dialog_utils.dart';
+import '../../../core/widgets/custom_form_field.dart';
 import 'email_verification_screen.dart';
 import 'view_models/forget_password_view_model/forget_password_states.dart';
 import 'view_models/forget_password_view_model/forget_password_view_model.dart';
@@ -71,11 +72,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
             children: [
               Text(
                 'Forget Password',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.w500,
-                ),
+                style: TextStyles.font18BaseDarkMedium,
               ),
               SizedBox(height: 16.h),
               Text(
@@ -86,49 +83,28 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
               SizedBox(height: 32.h),
               Form(
                 key: viewModel.formKey,
-                child: TextFormField(
+                child: CustomFormFiled(
                   controller: viewModel.emailController,
+                  hintText: 'Enter Your Email',
+                  labelText: 'Email',
                   validator: (value) {
+                    final emailRegex =
+                        RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+
                     if (value == null || value.trim().isEmpty) {
                       return "Please enter your email address";
+                    } else if (!emailRegex.hasMatch(value.trim())) {
+                      return "Please enter a valid email address";
                     }
 
                     return null;
                   },
-                  decoration: InputDecoration(
-                    labelText: 'Email',
-                    labelStyle: TextStyle(
-                      color: ColorsManager.grey,
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w400,
-                    ),
-                    hintText: 'Enter Your Email',
-                    hintStyle: TextStyle(
-                      color: ColorsManager.placeHolder,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400,
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: ColorsManager.baseBlack,
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(4.r),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: ColorsManager.baseBlack,
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(4.r),
-                    ),
-                  ),
                 ),
               ),
               SizedBox(height: 48.h),
               ElevatedButton(
-                onPressed: () async {
-                  await viewModel.forgetPassword();
+                onPressed: () {
+                  viewModel.doIntent(ForgetPasswordAction());
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: ColorsManager.baseBlue,

@@ -113,4 +113,10 @@ abstract class TextStyles {
     fontSize: 20.sp,
     fontWeight: FontWeightHelper.medium,
   );
+
+  static TextStyle font14PlaceHolderRegular = TextStyle(
+    color: ColorsManager.placeHolder,
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w400,
+  );
 }

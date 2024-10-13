@@ -19,7 +19,16 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordStates> {
   var formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
 
-  Future<void> forgetPassword() async {
+  // I know i have just one method (one action) so this method not necessary but just for practice
+  void doIntent(ForgetPasswordActions action) {
+    switch (action) {
+      case ForgetPasswordAction():
+        _forgetPassword();
+        break;
+    }
+  }
+
+  Future<void> _forgetPassword() async {
     emit(ForgetPasswordLoadingState('Loading..'));
 
     if (formKey.currentState?.validate() == true) {
