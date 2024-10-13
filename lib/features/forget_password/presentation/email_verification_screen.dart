@@ -75,14 +75,6 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 contentMessage:
                     "Check your email please, Code resent successfully.",
                 posActionName: "Ok",
-                posActionFunction: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ResetPasswordScreen(),
-                    ),
-                  );
-                },
               );
             }
           },
