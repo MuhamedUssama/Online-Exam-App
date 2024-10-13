@@ -41,17 +41,27 @@ class CustomFormFiled extends StatelessWidget {
       obscureText: secureText,
       keyboardType: keyboardType,
       style: style,
+      cursorColor: ColorsManager.baseBlack,
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
         suffixIconColor: ColorsManager.grey,
         hintText: hintText,
         hintStyle: TextStyles.font14PlaceHolderRegular,
         labelText: labelText,
+        labelStyle: TextStyles.font14BaseBlackRegular,
         errorBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: ColorsManager.errorColor)),
         focusedErrorBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: ColorsManager.errorColor)),
-        border: const OutlineInputBorder(borderSide: BorderSide(width: 2)),
+        border: const OutlineInputBorder(
+          borderSide: BorderSide(color: ColorsManager.baseBlack),
+        ),
+        enabledBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: ColorsManager.baseBlack),
+        ),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: ColorsManager.baseBlack),
+        ),
       ),
     );
   }

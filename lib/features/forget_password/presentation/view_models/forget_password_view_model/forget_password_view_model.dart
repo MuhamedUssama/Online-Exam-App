@@ -29,9 +29,9 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordStates> {
   }
 
   Future<void> _forgetPassword() async {
-    emit(ForgetPasswordLoadingState('Loading..'));
-
     if (formKey.currentState?.validate() == true) {
+      emit(ForgetPasswordLoadingState('Loading..'));
+
       final result = await usecase.invoke(emailController.text);
 
       SharedPreferencesHelper.saveData(

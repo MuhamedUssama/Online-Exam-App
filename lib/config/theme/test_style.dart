@@ -119,4 +119,10 @@ abstract class TextStyles {
     fontSize: 14.sp,
     fontWeight: FontWeight.w400,
   );
+
+  static TextStyle font14BaseBlackRegular = TextStyle(
+    color: ColorsManager.baseBlack,
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w400,
+  );
 }
