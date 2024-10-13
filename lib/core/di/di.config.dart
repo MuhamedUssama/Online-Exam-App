@@ -31,6 +31,8 @@ import '../../features/forget_password/presentation/view_models/email_verificati
     as _i110;
 import '../../features/forget_password/presentation/view_models/forget_password_view_model/forget_password_view_model.dart'
     as _i907;
+import '../../features/forget_password/presentation/view_models/reset_password_view_model/reset_password_view_model.dart'
+    as _i23;
 import '../cache/shared_preferences.dart' as _i254;
 import '../networking/api_consumer.dart' as _i681;
 import '../networking/dio_consumer.dart' as _i1042;
@@ -70,6 +72,8 @@ extension GetItInjectableX on _i174.GetIt {
             ));
     gh.factory<_i907.ForgetPasswordViewModel>(
         () => _i907.ForgetPasswordViewModel(gh<_i535.ForgetPasswordUsecase>()));
+    gh.factory<_i23.ResetPasswordViewModel>(
+        () => _i23.ResetPasswordViewModel(gh<_i966.ResetPasswordUsecase>()));
     return this;
   }
 }
