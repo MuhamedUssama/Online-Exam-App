@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'features/forget_password/presentation/email_verification_screen.dart';
-import 'features/forget_password/presentation/forget_password_screen.dart';
+import 'config/router/app_router.dart';
+import 'config/router/routes_name.dart';
 
 class Steller extends StatelessWidget {
   const Steller({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const ScreenUtilInit(
-      designSize: Size(375, 812),
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
       child: MaterialApp(
         title: 'Steller App',
-        home: EmailVerificationScreen(),
+        debugShowCheckedModeBanner: false,
+        initialRoute: RoutesName.verifyEmailScreen,
+        onGenerateRoute: (settings) => AppRouters.onGenerate(settings),
       ),
     );
   }
