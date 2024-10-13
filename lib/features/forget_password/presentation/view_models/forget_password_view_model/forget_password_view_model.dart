@@ -4,6 +4,8 @@ import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/core/results/result.dart';
 import 'package:online_exam_app/features/forget_password/domain/entities/forget_password_entity/forget_passowrd_entity.dart';
 
+import '../../../../../core/cache/shared_preferences.dart';
+import '../../../../../core/constants/app_constants.dart';
 import '../../../domain/usecases/forget_password_usecase.dart';
 import 'forget_password_states.dart';
 
@@ -22,6 +24,11 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordStates> {
 
     if (formKey.currentState?.validate() == true) {
       final result = await usecase.invoke(emailController.text);
+
+      SharedPreferencesHelper.saveData(
+        key: AppConstants.forgetPasswordUserEmail,
+        value: emailController.text,
+      );
 
       switch (result) {
         case Success<ForgetPasswordEntity?>():

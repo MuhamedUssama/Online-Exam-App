@@ -78,7 +78,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 child: CustomOtpWidget(
                   controller: viewModel.codeController,
                   onComplete: () {
-                    viewModel.doIntent(EmailVerificationAction());
+                    viewModel.doIntent(VerifyEmailAction());
                   },
                 ),
               ),
@@ -91,7 +91,9 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                     style: TextStyles.font16BaseBlackRegular,
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      viewModel.doIntent(ResendCodeAction());
+                    },
                     child: Text(
                       "Resend",
                       style: TextStyles.font16BaseBlueRegular,

@@ -1,28 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:online_exam_app/core/constants/app_constants.dart';
 
+import '../../../../../core/cache/shared_preferences.dart';
 import '../../../../../core/results/result.dart';
 import '../../../domain/entities/email_verification_entity/email_verification_entity.dart';
+import '../../../domain/entities/forget_password_entity/forget_passowrd_entity.dart';
+import '../../../domain/usecases/forget_password_usecase.dart';
 import '../../../domain/usecases/verify_email_usecase.dart';
 import 'email_verification_states.dart';
 
 @injectable
 class EmailVerificationViewModel extends Cubit<EmailVerificationStates> {
-  VerifyEmailUsecase usecase;
+  VerifyEmailUsecase verifyEmailUsecase;
+  ForgetPasswordUsecase forgetPasswordUsecase;
 
   @factoryMethod
-  EmailVerificationViewModel(this.usecase)
-      : super(EmailVerificationInitialState());
+  EmailVerificationViewModel(
+    this.verifyEmailUsecase,
+    this.forgetPasswordUsecase,
+  ) : super(EmailVerificationInitialState());
 
   var formKey = GlobalKey<FormState>();
   TextEditingController codeController = TextEditingController();
 
-  // Already i have one method in this view model so i don't need this approch but just for practice
   void doIntent(VerificationAction action) {
     switch (action) {
-      case EmailVerificationAction():
+      case VerifyEmailAction():
         _verifyEmail();
+        break;
+
+      case ResendCodeAction():
+        _resendCode();
+        break;
     }
   }
 
@@ -31,7 +42,7 @@ class EmailVerificationViewModel extends Cubit<EmailVerificationStates> {
       emit(EmailVerificationLoadingState('Loading..'));
 
       Result<EmailVerificationEntity?> result =
-          await usecase.invoke(codeController.text);
+          await verifyEmailUsecase.invoke(codeController.text);
 
       switch (result) {
         case Success<EmailVerificationEntity?>():
@@ -46,6 +57,30 @@ class EmailVerificationViewModel extends Cubit<EmailVerificationStates> {
             break;
           }
       }
+    }
+  }
+
+  Future<void> _resendCode() async {
+    emit(EmailVerificationLoadingState('Loading..'));
+
+    String email = SharedPreferencesHelper.getString(
+        key: AppConstants.forgetPasswordUserEmail);
+
+    Result<ForgetPasswordEntity?> result =
+        await forgetPasswordUsecase.invoke(email);
+
+    switch (result) {
+      case Success<ForgetPasswordEntity?>():
+        {
+          emit(EmailVerificationResentCodeState(result.data));
+          break;
+        }
+      case Fail<ForgetPasswordEntity?>():
+        {
+          emit(EmailVerificationErrorState(result.exception?.message ??
+              'Some thing went worng, please try again'));
+          break;
+        }
     }
   }
 }

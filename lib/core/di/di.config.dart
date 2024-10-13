@@ -64,7 +64,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i673.VerifyEmailUsecase>(
         () => _i673.VerifyEmailUsecase(gh<_i710.ForgetPasswordRepository>()));
     gh.factory<_i110.EmailVerificationViewModel>(
-        () => _i110.EmailVerificationViewModel(gh<_i673.VerifyEmailUsecase>()));
+        () => _i110.EmailVerificationViewModel(
+              gh<_i673.VerifyEmailUsecase>(),
+              gh<_i535.ForgetPasswordUsecase>(),
+            ));
     gh.factory<_i907.ForgetPasswordViewModel>(
         () => _i907.ForgetPasswordViewModel(gh<_i535.ForgetPasswordUsecase>()));
     return this;
