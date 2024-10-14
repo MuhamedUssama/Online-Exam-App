@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/core/results/result.dart';
@@ -13,24 +14,39 @@ import '../../../domain/usecases/sign_up_usecase.dart';
 class SignUpViewModel extends Cubit<SignUpStates>{
   SignUpUsecase usecase;
   @factoryMethod SignUpViewModel(this.usecase):super(SignUpLoadingState());
-  void doAction({required SignUpIntent intent})async{
+  TextEditingController username = TextEditingController();
+  TextEditingController firstName = TextEditingController();
+  TextEditingController lastName = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  TextEditingController rePassword = TextEditingController();
+  TextEditingController phone = TextEditingController();
+
+  var formKey = GlobalKey<FormState>();
+
+
+  bool isObscurePassword = true;
+  bool isObscureRePassword = true;
+  void doAction({required SignUpScreenIntent intent})async{
     switch (intent) {
-      case SignUpIntent():_login(intent);
+      case SignUpIntent():_signUp();
+      break;
     }
 
 
   }
-  void _login(SignUpIntent intent) async{
+  Future<void> _signUp() async{
+    if (formKey.currentState?.validate() == true){
     emit(SignUpLoadingState());
 
     var result = await usecase.invoke(
-        username: intent.username,
-        firstName: intent.firstName,
-        lastName: intent.lastName,
-        email: intent.email,
-        password: intent.password,
-        rePassword: intent.rePassword,
-        phone: intent.phone);
+        username: username.text,
+        firstName: firstName.text,
+        lastName: lastName.text,
+        email: email.text,
+        password: password.text,
+        rePassword: rePassword.text,
+        phone: phone.text);
     switch (result) {
 
       case Success<User?>():{
@@ -43,7 +59,7 @@ class SignUpViewModel extends Cubit<SignUpStates>{
 
     }
 
-  }
+  }}
 }
 
 

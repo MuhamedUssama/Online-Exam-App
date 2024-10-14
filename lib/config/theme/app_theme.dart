@@ -6,7 +6,7 @@ abstract class AppTheme {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         backgroundColor: WidgetStatePropertyAll(ColorsManager.baseBlue),
-      )
+      ),
     )
       // scaffoldBackgroundColor: Colors.white,
       );

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/core/results/result.dart';
@@ -11,30 +12,38 @@ import 'login_states.dart';
 @injectable
 class LoginViewModel extends Cubit<LoginStates>{
   LoginUsecase usecase;
- @factoryMethod LoginViewModel(this.usecase):super(LoginLoadingState());
-  void doAction({required LoginIntent intent})async{
+ @factoryMethod
+ LoginViewModel(this.usecase):super(LoginLoadingState());
+  var formKey = GlobalKey<FormState>();
+  TextEditingController email = TextEditingController();
+
+  TextEditingController password = TextEditingController();
+  bool isObscurePassword = true;
+  void doAction({required LoginScreenIntent intent})async{
     switch (intent) {
-      case LoginIntent():_login(intent);
+      case LoginIntent():_login();
+      break;
     }
 
 
   }
-  void _login(LoginIntent intent) async{
-    emit(LoginLoadingState());
+  Future<void> _login() async{
 
-    var result = await usecase.invoke(email:  intent.email,
-       password:  intent.password);
-    switch (result) {
-
-      case Success<User?>():{
-
-        emit(LoginSuccessState(result.data));
+    if (formKey.currentState?.validate() == true) {
+      emit(LoginLoadingState());
+      var result = await usecase.invoke(email:email.text,
+          password: password.text);
+      switch (result) {
+        case Success<User?>():
+          {
+            emit(LoginSuccessState(result.data));
+          }
+        case Fail<User?>():
+          {
+            emit(LoginErrorState(result.exception?.message ?? ""));
+          }
       }
-      case Fail<User?>():{
-        emit(LoginErrorState(result.exception?.message??""));
-      }
-
-      }
+    }
 
     }
   }

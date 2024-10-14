@@ -4,6 +4,7 @@ import '../../../data/models/User.dart';
 
 sealed class SignUpStates{}
 class SignUpLoadingState extends SignUpStates{}
+class SignUpInitialState extends SignUpStates{}
 class SignUpErrorState extends SignUpStates{
   String? errorMessage;
   SignUpErrorState(this.errorMessage);

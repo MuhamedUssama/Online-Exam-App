@@ -14,7 +14,7 @@ class Steller extends StatelessWidget {
       theme: AppTheme.lightThemeData,
       title: 'Steller App',
       debugShowCheckedModeBanner: false,
-      initialRoute: RoutesName.signUpScreen,
+      initialRoute: RoutesName.loginScreen,
       onGenerateRoute: (settings) => AppRouters.onGenerate(settings),
     );
   }
