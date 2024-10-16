@@ -34,7 +34,7 @@ class SignUpViewModel extends Cubit<SignUpStates> {
   }
 
   Future<void> _signUp() async {
-    if (formKey.currentState?.validate() == true) {
+    if (formKey.currentState?.validate() ?? false) {
       emit(SignUpLoadingState());
 
       var result = await usecase.invoke(

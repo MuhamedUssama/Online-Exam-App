@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_exam_app/config/router/app_router.dart';
 import 'package:online_exam_app/config/router/routes_name.dart';
-import 'package:online_exam_app/config/theme/app_colors.dart';
 import 'package:online_exam_app/core/di/di.dart';
 
 import '../../../../config/theme/test_style.dart';
@@ -48,12 +46,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
               DialogUtils.hideLoading(context);
               DialogUtils.showMessage(context,
                   contentMessage: state.errorMessage ?? "Please Try Again",
-                  title: 'Error',posActionName: 'Ok');
+                  title: 'Error',
+                  posActionName: 'Ok');
             } else if (state is SignUpSuccessState) {
               DialogUtils.hideLoading(context);
               DialogUtils.showMessage(context,
                   contentMessage: 'User Logged In Successfully',
-                  title: 'Success',posActionName: 'Ok');
+                  title: 'Success',
+                  posActionName: 'Ok');
             }
           },
           child: Form(
@@ -306,7 +306,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   void login() {
-    if (!isValidField()) return;
+    // if (!isValidField()) return;
 
     viewModel.doAction(
         intent: SignUpIntent(
