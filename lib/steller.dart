@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_exam_app/config/router/app_router.dart';
 
-import 'config/router/app_router.dart';
 import 'config/router/routes_name.dart';
 
 class Steller extends StatelessWidget {

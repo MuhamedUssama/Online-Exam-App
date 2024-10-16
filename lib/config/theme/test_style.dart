@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_exam_app/config/theme/app_colors.dart';
 
-import 'app_colors.dart';
 import 'font_weight_helper.dart';
 
 abstract class TextStyles {
@@ -32,15 +32,20 @@ abstract class TextStyles {
     fontWeight: FontWeightHelper.regular,
   );
 
-  static TextStyle font24BlueBold = TextStyle(
-    fontSize: 24.sp,
+  static TextStyle font24BlueBold = const TextStyle(
+    fontSize: 24,
     fontWeight: FontWeightHelper.bold,
   );
 
-  static TextStyle font16WhiteSemiBold = TextStyle(
-    fontSize: 16.sp,
-    fontWeight: FontWeightHelper.semiBold,
+  static TextStyle font16WhiteRegular = const TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeightHelper.regular,
     color: Colors.white,
+  );
+  static TextStyle font16BlackRegular = const TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.baseBlack,
   );
 
   static TextStyle font13GrayRegular = TextStyle(
@@ -124,5 +129,17 @@ abstract class TextStyles {
     color: ColorsManager.baseBlack,
     fontSize: 14.sp,
     fontWeight: FontWeight.w400,
+  );
+  static TextStyle elevatedButtonWhiteMedium = const TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeightHelper.medium,
+    color: Colors.white,
+  );
+
+  static TextStyle textButtonBaseBlueRegular = const TextStyle(
+    fontWeight: FontWeightHelper.regular,
+    fontSize: 16,
+    decoration: TextDecoration.underline,
+    color: ColorsManager.baseBlue,
   );
 }
