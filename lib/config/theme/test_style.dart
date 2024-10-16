@@ -130,16 +130,22 @@ abstract class TextStyles {
     fontSize: 14.sp,
     fontWeight: FontWeight.w400,
   );
-  static TextStyle elevatedButtonWhiteMedium = const TextStyle(
-    fontSize: 16,
+  static TextStyle elevatedButtonWhiteMedium =  TextStyle(
+    fontSize: 16.sp,
     fontWeight: FontWeightHelper.medium,
     color: Colors.white,
   );
 
-  static TextStyle textButtonBaseBlueRegular = const TextStyle(
+  static TextStyle textButtonBaseBlueRegular =  TextStyle(
     fontWeight: FontWeightHelper.regular,
-    fontSize: 16,
+    fontSize: 16.sp,
     decoration: TextDecoration.underline,
     color: ColorsManager.baseBlue,
+  );
+  static TextStyle text12ButtonBaseBlackRegular =  TextStyle(
+    fontWeight: FontWeightHelper.regular,
+    fontSize: 12.sp,
+    decoration: TextDecoration.underline,
+    color: ColorsManager.baseBlack,
   );
 }

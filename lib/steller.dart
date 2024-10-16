@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam_app/config/router/app_router.dart';
+import 'package:online_exam_app/config/theme/app_theme.dart';
 
 import 'config/router/routes_name.dart';
 
@@ -16,6 +17,7 @@ class Steller extends StatelessWidget {
       child: MaterialApp(
         title: 'Steller App',
         debugShowCheckedModeBanner: false,
+        theme: AppTheme.lightThemeData,
         initialRoute: RoutesName.loginScreen,
         onGenerateRoute: (settings) => AppRouters.onGenerate(settings),
       ),

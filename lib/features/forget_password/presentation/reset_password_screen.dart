@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam_app/core/di/di.dart';
+import 'package:online_exam_app/features/auth/ui/login/login_screen.dart';
 
 import '../../../config/theme/test_style.dart';
 import '../../../core/utils/dialog_utils.dart';
@@ -45,7 +46,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             DialogUtils.showMessage(
               context,
               title: "Error",
-              contentMessage: state.errorMessage ?? "Somthing went wrong",
+              contentMessage: state.errorMessage ?? "Something went wrong",
               posActionName: "Ok",
             );
           } else if (state is ResetPasswordStatesSuccessState) {
@@ -55,6 +56,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               title: "Successfully",
               contentMessage: "You now have a new password",
               posActionName: "Ok",
+              posActionFunction: (){
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginScreen(),));
+              }
             );
           }
         },
