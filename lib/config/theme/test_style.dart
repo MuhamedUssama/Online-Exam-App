@@ -32,25 +32,20 @@ abstract class TextStyles {
     fontWeight: FontWeightHelper.regular,
   );
 
-  static TextStyle font24BlueBold = TextStyle(
+  static TextStyle font24BlueBold = const TextStyle(
     fontSize: 24,
     fontWeight: FontWeightHelper.bold,
   );
 
-  static TextStyle font16WhiteRegular = TextStyle(
+  static TextStyle font16WhiteRegular = const TextStyle(
     fontSize: 16,
     fontWeight: FontWeightHelper.regular,
     color: Colors.white,
   );
-  static TextStyle font16BlackRegular = TextStyle(
+  static TextStyle font16BlackRegular = const TextStyle(
     fontSize: 16,
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.baseBlack,
-  );
-  static TextStyle font16BaseBlueRegular = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeightHelper.regular,
-    color: ColorsManager.baseBlue,
   );
 
   static TextStyle font13GrayRegular = TextStyle(
@@ -92,25 +87,59 @@ abstract class TextStyles {
     fontSize: 15.sp,
     fontWeight: FontWeightHelper.medium,
   );
-  static TextStyle elevatedButtonWhiteMedium = TextStyle(
+
+  static TextStyle font18BaseDarkMedium = TextStyle(
+    color: ColorsManager.baseBlack,
+    fontSize: 18.sp,
+    fontWeight: FontWeightHelper.medium,
+  );
+
+  static TextStyle font14GreyRegular = TextStyle(
+    color: ColorsManager.grey,
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.regular,
+  );
+
+  static TextStyle font16BaseBlackRegular = TextStyle(
+    color: ColorsManager.baseBlack,
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.regular,
+  );
+
+  static TextStyle font16BaseBlueRegular = TextStyle(
+    color: ColorsManager.baseBlue,
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.regular,
+    decoration: TextDecoration.underline,
+  );
+
+  static TextStyle font20BaseDarkMedium = TextStyle(
+    color: ColorsManager.baseBlack,
+    fontSize: 20.sp,
+    fontWeight: FontWeightHelper.medium,
+  );
+
+  static TextStyle font14PlaceHolderRegular = TextStyle(
+    color: ColorsManager.placeHolder,
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle font14BaseBlackRegular = TextStyle(
+    color: ColorsManager.baseBlack,
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w400,
+  );
+  static TextStyle elevatedButtonWhiteMedium = const TextStyle(
     fontSize: 16,
     fontWeight: FontWeightHelper.medium,
     color: Colors.white,
   );
-  static TextStyle textButtonBaseBlueRegular = TextStyle(
-    fontWeight: FontWeightHelper.regular,
-      fontSize: 16,
-  decoration: TextDecoration.underline,
-      color: ColorsManager.baseBlue
-  );
-  static TextStyle font14PlaceHolderRegular = TextStyle(
-    color: ColorsManager.placeHolder,
-    fontSize: 14,
-    fontWeight: FontWeight.w400,
-  );
-  static TextStyle font14BaseBlackRegular = TextStyle(
-    color: ColorsManager.baseBlack,
-    fontSize: 14,
 
+  static TextStyle textButtonBaseBlueRegular = const TextStyle(
+    fontWeight: FontWeightHelper.regular,
+    fontSize: 16,
+    decoration: TextDecoration.underline,
+    color: ColorsManager.baseBlue,
   );
 }

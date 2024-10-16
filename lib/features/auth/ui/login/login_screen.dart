@@ -1,8 +1,5 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_exam_app/config/theme/app_colors.dart';
 import 'package:online_exam_app/core/utils/dialog_utils.dart';
 
 import '../../../../config/router/routes_name.dart';
@@ -15,6 +12,8 @@ import 'cubit/login_states.dart';
 import 'cubit/login_view_model.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -50,7 +49,8 @@ class _LoginScreenState extends State<LoginScreen> {
               DialogUtils.hideLoading(context);
               DialogUtils.showMessage(context,
                   contentMessage: 'User Logged In Successfully',
-                  title: 'Success',posActionName: 'Ok');
+                  title: 'Success',
+                  posActionName: 'Ok');
             }
           },
           child: Form(

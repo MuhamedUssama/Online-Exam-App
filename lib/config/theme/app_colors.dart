@@ -35,4 +35,6 @@ abstract class ColorsManager {
   static const Color grey = Color(0XFF535353);
 
   static const Color placeHolder = Color(0XFFA6A6A6);
+
+  static const Color pinCode = Color(0XFFDFE7F7);
 }
