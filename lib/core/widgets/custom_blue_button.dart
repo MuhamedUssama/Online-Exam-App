@@ -4,12 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../config/theme/app_colors.dart';
 import '../../../../config/theme/test_style.dart';
 
-class CustomContinueButton extends StatelessWidget {
+class CustomBlueButton extends StatelessWidget {
   final double width;
   final String text;
   final Function onPresed;
 
-  const CustomContinueButton({
+  const CustomBlueButton({
     super.key,
     required this.width,
     required this.onPresed,

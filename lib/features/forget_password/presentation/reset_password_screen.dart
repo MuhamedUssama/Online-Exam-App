@@ -6,10 +6,10 @@ import 'package:online_exam_app/features/auth/ui/login/login_screen.dart';
 
 import '../../../config/theme/test_style.dart';
 import '../../../core/utils/dialog_utils.dart';
+import '../../../core/widgets/custom_blue_button.dart';
 import '../../../core/widgets/custom_form_field.dart';
 import 'view_models/reset_password_view_model/reset_password_states.dart';
 import 'view_models/reset_password_view_model/reset_password_view_model.dart';
-import 'widgets/custom_continue_button.dart';
 import 'widgets/screen_description_widget.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
@@ -51,15 +51,16 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             );
           } else if (state is ResetPasswordStatesSuccessState) {
             DialogUtils.hideLoading(context);
-            DialogUtils.showMessage(
-              context,
-              title: "Successfully",
-              contentMessage: "You now have a new password",
-              posActionName: "Ok",
-              posActionFunction: (){
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginScreen(),));
-              }
-            );
+            DialogUtils.showMessage(context,
+                title: "Successfully",
+                contentMessage: "You now have a new password",
+                posActionName: "Ok", posActionFunction: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LoginScreen(),
+                  ));
+            });
           }
         },
         child: Padding(
@@ -134,7 +135,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   },
                 ),
                 SizedBox(height: 48.h),
-                CustomContinueButton(
+                CustomBlueButton(
                   width: width,
                   text: 'Continue',
                   onPresed: () {

@@ -7,6 +7,7 @@ import 'package:online_exam_app/features/auth/ui/login/login_screen.dart';
 import '../../../../config/theme/test_style.dart';
 import '../../../../core/utils/dialog_utils.dart';
 import '../../../../core/utils/validation_utils.dart';
+import '../../../../core/widgets/custom_blue_button.dart';
 import '../../../../core/widgets/custom_form_field.dart';
 import 'cubit/sign_up_states.dart';
 import 'cubit/sign_up_view_model.dart';
@@ -35,6 +36,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
         appBar: AppBar(
           title: Text('Sign Up', style: TextStyles.font20BaseDarkMedium),
@@ -59,7 +62,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     title: 'Success',
                     posActionName: 'Ok', posActionFunction: () {
                   Navigator.pushReplacement(
-                      context, MaterialPageRoute(builder: (context) => const LoginScreen(),));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginScreen(),
+                    ),
+                  );
                 });
               }
             },
@@ -249,22 +256,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     SizedBox(
                       height: 48.h,
                     ),
-                    Row(
-                      children: [
-                        Expanded(
-                            child: ElevatedButton(
-                          onPressed: () {
-                            signUp();
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 14),
-                            child: Text(
-                              'Sign Up',
-                              style: TextStyles.elevatedButtonWhiteMedium,
-                            ),
-                          ),
-                        )),
-                      ],
+                    CustomBlueButton(
+                      width: width,
+                      text: 'Signup',
+                      onPresed: () {
+                        signUp();
+                      },
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

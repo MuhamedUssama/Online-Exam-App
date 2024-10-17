@@ -5,6 +5,7 @@ import '../../config/theme/test_style.dart';
 
 typedef Validator = String? Function(String?);
 
+// ignore: must_be_immutable
 class CustomFormFiled extends StatelessWidget {
   final String hintText;
   final String labelText;
