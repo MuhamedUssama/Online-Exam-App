@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_exam_app/config/router/app_router.dart';
+import 'package:online_exam_app/config/theme/app_colors.dart';
 import 'package:online_exam_app/core/utils/dialog_utils.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_exam_app/features/auth/ui/signUp/sign_up_screen.dart';
 
 import '../../../../config/router/routes_name.dart';
 import '../../../../config/theme/test_style.dart';
@@ -28,69 +32,71 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
+  bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
+    var mediaQueryHeight = MediaQuery.of(context).size.height;
     return Scaffold(
         appBar: AppBar(
-          title: Text('Login'),
+          title: Text('Login', style: TextStyles.font20BaseDarkMedium),
         ),
-        body: BlocListener<LoginViewModel, LoginStates>(
-          bloc: viewModel,
-          listener: (context, state) {
-            if (state is LoginLoadingState) {
-              DialogUtils.showLoading(context, 'Loading.');
-            } else if (state is LoginErrorState) {
-              DialogUtils.hideLoading(context);
-              DialogUtils.showMessage(context,
-                  contentMessage: state.errorMessage ?? "Please Try Again",
-                  title: 'Error',
-                  posActionName: 'Ok');
-            } else if (state is LoginSuccessState) {
-              DialogUtils.hideLoading(context);
-              DialogUtils.showMessage(context,
-                  contentMessage: 'User Logged In Successfully',
-                  title: 'Success',
-                  posActionName: 'Ok');
-            }
-          },
-          child: Form(
-            key: viewModel.formKey,
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+        body: Padding(
+          padding: const EdgeInsets.all(16),
+          child: BlocListener<LoginViewModel, LoginStates>(
+            bloc: viewModel,
+            listener: (context, state) {
+              if (state is LoginLoadingState) {
+                DialogUtils.showLoading(context, 'Loading.');
+              } else if (state is LoginErrorState) {
+                DialogUtils.hideLoading(context);
+                DialogUtils.showMessage(context,
+                    contentMessage: state.errorMessage ?? "Please Try Again",
+                    title: 'Error',
+                    posActionName: 'Ok');
+              } else if (state is LoginSuccessState) {
+                DialogUtils.hideLoading(context);
+                DialogUtils.showMessage(context,
+                    contentMessage: 'User Logged In Successfully',
+                    title: 'Success',
+                    posActionName: 'Ok');
+              }
+            },
+            child: Form(
+              key: viewModel.formKey,
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
                         child: CustomFormFiled(
-                          labelText: 'Enter E-mail',
-                          hintText: 'Enter Your E-Mail',
+                          labelText: 'Email',
+                          hintText: 'Enter Your email',
                           controller: viewModel.email,
                           validator: (text) {
                             if (text == null || text.trim().isEmpty) {
-                              return 'Please Enter E-Mail';
+                              return 'Please enter email';
                             }
                             if (!isValidEmail(text)) {
-                              return 'Please Enter Valid Email';
+                              return 'Please Enter Valid email';
                             }
                             return null;
                           },
                           keyboardType: TextInputType.emailAddress,
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                    ],
+                  ),
+                  SizedBox(height:24.h ,),
+
+                  Row(
+                    children: [
+                      Expanded(
                         child: CustomFormFiled(
                           labelText: 'Enter Your Password',
                           hintText: 'Enter Password',
                           controller: viewModel.password,
-                          secureText: true,
+                          secureText: viewModel.isObscurePassword,
                           suffixIcon: GestureDetector(
                             onTap: () {
                               setState(() {
@@ -115,64 +121,91 @@ class _LoginScreenState extends State<LoginScreen> {
                           keyboardType: TextInputType.text,
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                            child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                    ],
+                  ),
+                  SizedBox(height:16.h ,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Checkbox(
+                            activeColor: ColorsManager.baseBlue,
+                            value: isChecked,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                isChecked = value ?? false;
+                              });
+                            },
+                          ),
+                         const Text('Remember me'),
+                        ],
+                      ),
+                      TextButton(
+                        style: ButtonStyle(
+                          padding: WidgetStatePropertyAll(EdgeInsets.all(0))
+                        ),
+                          onPressed: () {
+                            Navigator.pushReplacementNamed(
+                                context, RoutesName.forgetPasswordScreen);
+                          },
+                          child: Text(
+                            'Forget password?',
+                            style: TextStyles.text12ButtonBaseBlackRegular,
+                          ))
+                    ],
+                  ),
+                  SizedBox(
+                    height:48.h
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
                           child: ElevatedButton(
                             onPressed: () {
                               login();
                             },
-                            child: Text(
-                              'Login',
-                              style: TextStyles.elevatedButtonWhiteMedium,
+                            style: const ButtonStyle(
+                                backgroundColor: WidgetStatePropertyAll(
+                                    ColorsManager.baseBlue)),
+                            child: Padding(
+                              padding:  const EdgeInsets.symmetric(vertical: 14),
+
+                              child: Text(
+                                'Login',
+                                style: TextStyles.elevatedButtonWhiteMedium,
+                              ),
+
                             ),
-                          ),
-                        )),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Don't have an account?",
-                          style: TextStyles.font16BlackRegular,
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pushReplacementNamed(
-                                context, RoutesName.signUpScreen);
-                          },
-                          child: Text('Sign Up',
-                              style: TextStyles.textButtonBaseBlueRegular),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
+
+
+                          )),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Don't have an account?",
+                        style: TextStyles.font16BlackRegular,
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => const SignUpScreen(),));
+                        },
+                        child: Text('Sign Up',
+                            style: TextStyles.textButtonBaseBlueRegular),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ));
   }
 
-  bool isValidField() {
-    bool isValid = true;
-    if (viewModel.password.text == '' || viewModel.password.text == '') {
-      isValid = true;
-    }
-    return isValid;
-  }
-
   void login() {
-    if (!isValidField()) return;
-
     viewModel.doAction(
         intent: LoginIntent(viewModel.email.text, viewModel.password.text));
   }

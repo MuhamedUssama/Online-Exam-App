@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam_app/config/router/routes_name.dart';
 import 'package:online_exam_app/core/di/di.dart';
+import 'package:online_exam_app/features/auth/ui/login/login_screen.dart';
 
 import '../../../../config/theme/test_style.dart';
 import '../../../../core/utils/dialog_utils.dart';
@@ -9,6 +10,7 @@ import '../../../../core/utils/validation_utils.dart';
 import '../../../../core/widgets/custom_form_field.dart';
 import 'cubit/sign_up_states.dart';
 import 'cubit/sign_up_view_model.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -35,37 +37,40 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Login'),
+          title: Text('Sign Up', style: TextStyles.font20BaseDarkMedium),
         ),
-        body: BlocListener<SignUpViewModel, SignUpStates>(
-          bloc: viewModel,
-          listener: (context, state) {
-            if (state is SignUpLoadingState) {
-              DialogUtils.showLoading(context, 'LOADING');
-            } else if (state is SignUpErrorState) {
-              DialogUtils.hideLoading(context);
-              DialogUtils.showMessage(context,
-                  contentMessage: state.errorMessage ?? "Please Try Again",
-                  title: 'Error',
-                  posActionName: 'Ok');
-            } else if (state is SignUpSuccessState) {
-              DialogUtils.hideLoading(context);
-              DialogUtils.showMessage(context,
-                  contentMessage: 'User Logged In Successfully',
-                  title: 'Success',
-                  posActionName: 'Ok');
-            }
-          },
-          child: Form(
-            key: viewModel.formKey,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+        body: Padding(
+          padding: const EdgeInsets.all(16),
+          child: BlocListener<SignUpViewModel, SignUpStates>(
+            bloc: viewModel,
+            listener: (context, state) {
+              if (state is SignUpLoadingState) {
+                DialogUtils.showLoading(context, 'LOADING');
+              } else if (state is SignUpErrorState) {
+                DialogUtils.hideLoading(context);
+                DialogUtils.showMessage(context,
+                    contentMessage: state.errorMessage ?? "Please Try Again",
+                    title: 'Error',
+                    posActionName: 'Ok');
+              } else if (state is SignUpSuccessState) {
+                DialogUtils.hideLoading(context);
+                DialogUtils.showMessage(context,
+                    contentMessage: 'Created User Successfully',
+                    title: 'Success',
+                    posActionName: 'Ok', posActionFunction: () {
+                  Navigator.pushReplacement(
+                      context, MaterialPageRoute(builder: (context) => const LoginScreen(),));
+                });
+              }
+            },
+            child: Form(
+              key: viewModel.formKey,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
                           child: CustomFormFiled(
                             labelText: 'Enter Your Username',
                             hintText: 'Enter Username',
@@ -80,14 +85,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             keyboardType: TextInputType.text,
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 24.h,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
                           child: CustomFormFiled(
                             labelText: 'Enter Your First Name',
                             hintText: 'Enter First Name',
@@ -102,10 +107,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             keyboardType: TextInputType.text,
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                        SizedBox(width: 16.w),
+                        Expanded(
                           child: CustomFormFiled(
                             labelText: 'Enter Your Last Name',
                             hintText: 'Enter Last Name',
@@ -120,14 +123,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             keyboardType: TextInputType.text,
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 24.h,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
                           child: CustomFormFiled(
                             labelText: 'Enter Your E-Mail',
                             hintText: 'Enter E-Mail',
@@ -144,14 +147,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             keyboardType: TextInputType.emailAddress,
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 24.h,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
                           child: CustomFormFiled(
                             labelText: 'Enter Your Password',
                             hintText: 'Password',
@@ -183,10 +186,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             keyboardType: TextInputType.text,
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                        SizedBox(width: 16.w),
+                        Expanded(
                           child: CustomFormFiled(
                             labelText: 'Confirm Password',
                             hintText: 'Confirm Password',
@@ -221,14 +222,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             keyboardType: TextInputType.text,
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 24.h,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
                           child: CustomFormFiled(
                             labelText: 'Phone Number',
                             hintText: 'Phone Number',
@@ -243,71 +244,54 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             keyboardType: TextInputType.text,
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                              child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 48.h,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
                             child: ElevatedButton(
-                              onPressed: () {
-                                login();
-                              },
-                              child: Text(
-                                'Sign Up',
-                                style: TextStyles.elevatedButtonWhiteMedium,
-                              ),
+                          onPressed: () {
+                            signUp();
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 14),
+                            child: Text(
+                              'Sign Up',
+                              style: TextStyles.elevatedButtonWhiteMedium,
                             ),
-                          )),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Already have an Account?',
-                            style: TextStyles.font16BlackRegular,
                           ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pushReplacementNamed(
-                                  context, RoutesName.loginScreen);
-                            },
-                            child: Text('Login',
-                                style: TextStyles.textButtonBaseBlueRegular),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ],
+                        )),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Already have an Account?',
+                          style: TextStyles.font16BlackRegular,
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushReplacementNamed(
+                                context, RoutesName.loginScreen);
+                          },
+                          child: Text('Login',
+                              style: TextStyles.textButtonBaseBlueRegular),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
         ));
   }
 
-  bool isValidField() {
-    bool isValid = false;
-    if (viewModel.username.text == '' ||
-        viewModel.firstName.text == '' ||
-        viewModel.lastName.text == '' ||
-        viewModel.email.text == '' ||
-        viewModel.password.text == '' ||
-        viewModel.rePassword.text == '' ||
-        viewModel.phone.text == '') {
-      isValid = true;
-    }
-    return isValid;
-  }
-
-  void login() {
-    // if (!isValidField()) return;
-
+  void signUp() {
     viewModel.doAction(
         intent: SignUpIntent(
             username: viewModel.username.text,
