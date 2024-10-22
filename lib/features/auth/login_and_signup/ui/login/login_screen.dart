@@ -70,56 +70,44 @@ class _LoginScreenState extends State<LoginScreen> {
             key: viewModel.formKey,
             child: Column(
               children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: CustomFormFiled(
-                        labelText: AppStrings.emailLabelText,
-                        hintText: AppStrings.emailHintText,
-                        controller: viewModel.email,
-                        validator: (text) {
-                          return AppValidator.validateEmailAddress(text);
-                        },
-                        keyboardType: TextInputType.emailAddress,
-                      ),
-                    ),
-                  ],
+                CustomFormFiled(
+                  labelText: AppStrings.emailLabelText,
+                  hintText: AppStrings.emailHintText,
+                  controller: viewModel.email,
+                  validator: (text) {
+                    return AppValidator.validateEmailAddress(text);
+                  },
+                  keyboardType: TextInputType.emailAddress,
                 ),
                 SizedBox(
                   height: 24.h,
                 ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: CustomFormFiled(
-                        labelText: AppStrings.passwordLabelText,
-                        hintText: AppStrings.passwordHintText,
-                        controller: viewModel.password,
-                        secureText: viewModel.isObscurePassword,
-                        suffixIcon: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              if (viewModel.isObscurePassword) {
-                                viewModel.isObscurePassword = false;
-                              } else {
-                                viewModel.isObscurePassword = true;
-                              }
-                            });
-                          },
-                          child: viewModel.isObscurePassword
-                              ? const Icon(Icons.visibility_off)
-                              : const Icon(Icons.visibility),
-                        ),
-                        validator: (text) {
-                          return AppValidator.validateFieldIsNotEmpty(
-                            value: text,
-                            message: AppStrings.emptyPassword,
-                          );
-                        },
-                        keyboardType: TextInputType.text,
-                      ),
-                    ),
-                  ],
+                CustomFormFiled(
+                  labelText: AppStrings.passwordLabelText,
+                  hintText: AppStrings.passwordHintText,
+                  controller: viewModel.password,
+                  secureText: viewModel.isObscurePassword,
+                  suffixIcon: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        if (viewModel.isObscurePassword) {
+                          viewModel.isObscurePassword = false;
+                        } else {
+                          viewModel.isObscurePassword = true;
+                        }
+                      });
+                    },
+                    child: viewModel.isObscurePassword
+                        ? const Icon(Icons.visibility_off)
+                        : const Icon(Icons.visibility),
+                  ),
+                  validator: (text) {
+                    return AppValidator.validateFieldIsNotEmpty(
+                      value: text,
+                      message: AppStrings.emptyPassword,
+                    );
+                  },
+                  keyboardType: TextInputType.text,
                 ),
                 SizedBox(
                   height: 16.h,
