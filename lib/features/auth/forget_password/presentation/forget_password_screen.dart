@@ -4,7 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../config/theme/test_style.dart';
 import '../../../../core/di/di.dart';
+import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/dialog_utils.dart';
+import '../../../../core/utils/validation_utils.dart';
 import '../../../../core/widgets/custom_blue_button.dart';
 import '../../../../core/widgets/custom_form_field.dart';
 import 'email_verification_screen.dart';
@@ -32,7 +34,10 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Password', style: TextStyles.font20BaseDarkMedium),
+        title: Text(
+          AppStrings.passwordAppBarTitle,
+          style: TextStyles.font20BaseDarkMedium,
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -72,35 +77,25 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const ScreenDescriptionWidget(
-                title: 'Forget Password',
-                description:
-                    'Please enter your email associated to\n your account',
+                title: AppStrings.forgetPasswordScreenTitle,
+                description: AppStrings.forgetPasswordScreenDescription,
               ),
               SizedBox(height: 32.h),
               Form(
                 key: viewModel.formKey,
                 child: CustomFormFiled(
                   controller: viewModel.emailController,
-                  hintText: 'Enter Your Email',
-                  labelText: 'Email',
+                  hintText: AppStrings.emailHintText,
+                  labelText: AppStrings.emailLabelText,
                   validator: (value) {
-                    final emailRegex =
-                        RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-
-                    if (value == null || value.trim().isEmpty) {
-                      return "Please enter your email address";
-                    } else if (!emailRegex.hasMatch(value.trim())) {
-                      return "Please enter a valid email address";
-                    }
-
-                    return null;
+                    return AppValidator.validateEmailAddress(value);
                   },
                 ),
               ),
               SizedBox(height: 48.h),
               CustomBlueButton(
                 width: width,
-                text: 'Continue',
+                text: AppStrings.continueText,
                 onPresed: () {
                   viewModel.doIntent(ForgetPasswordAction());
                 },

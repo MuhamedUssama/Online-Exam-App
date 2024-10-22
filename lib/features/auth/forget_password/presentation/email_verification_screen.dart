@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../config/theme/test_style.dart';
 import '../../../../core/di/di.dart';
+import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/dialog_utils.dart';
 import 'reset_password_screen.dart';
 import 'view_models/email_verification_view_model/email_verification_states.dart';
@@ -32,7 +33,10 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Password', style: TextStyles.font20BaseDarkMedium),
+        title: Text(
+          AppStrings.passwordAppBarTitle,
+          style: TextStyles.font20BaseDarkMedium,
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -82,9 +86,8 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const ScreenDescriptionWidget(
-                title: 'Email verification',
-                description:
-                    'Please enter your code that send to your\n email address ',
+                title: AppStrings.emailVerivicationScreenTitle,
+                description: AppStrings.emailVerivicationScreenDescription,
               ),
               SizedBox(height: 32.h),
               Form(
@@ -101,7 +104,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Didn't receive code?",
+                    AppStrings.didnotRcieveCode,
                     style: TextStyles.font16BaseBlackRegular,
                   ),
                   TextButton(
@@ -109,7 +112,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                       viewModel.doIntent(ResendCodeAction());
                     },
                     child: Text(
-                      "Resend",
+                      AppStrings.resendText,
                       style: TextStyles.font16BaseBlueRegular,
                     ),
                   ),

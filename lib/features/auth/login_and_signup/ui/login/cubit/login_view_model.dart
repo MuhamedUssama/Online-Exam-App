@@ -11,12 +11,15 @@ import 'login_states.dart';
 @injectable
 class LoginViewModel extends Cubit<LoginStates> {
   LoginUsecase usecase;
+
   @factoryMethod
   LoginViewModel(this.usecase) : super(LoginLoadingState());
+
   var formKey = GlobalKey<FormState>();
   TextEditingController email = TextEditingController();
-
   TextEditingController password = TextEditingController();
+  bool isChecked = false;
+
   bool isObscurePassword = true;
   void doAction({required LoginScreenIntent intent}) async {
     switch (intent) {
@@ -47,8 +50,4 @@ class LoginViewModel extends Cubit<LoginStates> {
 
 sealed class LoginScreenIntent {}
 
-class LoginIntent extends LoginScreenIntent {
-  String email;
-  String password;
-  LoginIntent(this.email, this.password);
-}
+class LoginIntent extends LoginScreenIntent {}
