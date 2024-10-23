@@ -1,4 +1,4 @@
-abstract class EndPoints {
+class EndPoints {
   static const String apiBaseUrl = 'https://exam.elevateegy.com/api/v1/';
 
   static const String loginUrl = "auth/signin";

@@ -5,7 +5,7 @@ import 'package:online_exam_app/config/theme/app_colors.dart';
 
 import 'font_weight_helper.dart';
 
-abstract class TextStyles {
+class TextStyles {
   static TextStyle font16BlackRegular = const TextStyle(
     fontSize: 16,
     fontWeight: FontWeightHelper.regular,
