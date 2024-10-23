@@ -16,14 +16,3 @@ UserResponseEntity _$UserResponseEntityFromJson(Map<String, dynamic> json) =>
       phone: json['phone'] as String?,
       username: json['username'] as String?,
     );
-
-Map<String, dynamic> _$UserResponseEntityToJson(UserResponseEntity instance) =>
-    <String, dynamic>{
-      '_id': instance.id,
-      'username': instance.username,
-      'firstName': instance.firstName,
-      'lastName': instance.lastName,
-      'email': instance.email,
-      'phone': instance.phone,
-      'isVerified': instance.isVerified,
-    };

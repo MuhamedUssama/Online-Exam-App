@@ -3,10 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam_app/config/router/app_router.dart';
 import 'package:online_exam_app/config/theme/app_theme.dart';
 
-import 'config/router/routes_name.dart';
-
 class Steller extends StatelessWidget {
-  const Steller({super.key});
+  final String initialRoute;
+  const Steller({super.key, required this.initialRoute});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +17,7 @@ class Steller extends StatelessWidget {
         title: 'Steller App',
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightThemeData,
-        initialRoute: RoutesName.loginScreen,
+        initialRoute: initialRoute,
         onGenerateRoute: (settings) => AppRouters.onGenerate(settings),
       ),
     );

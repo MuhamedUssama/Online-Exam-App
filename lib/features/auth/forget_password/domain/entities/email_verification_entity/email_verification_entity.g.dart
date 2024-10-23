@@ -14,12 +14,3 @@ EmailVerificationEntity _$EmailVerificationEntityFromJson(
       code: (json['code'] as num?)?.toInt(),
       stack: json['stack'] as String?,
     );
-
-Map<String, dynamic> _$EmailVerificationEntityToJson(
-        EmailVerificationEntity instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      'message': instance.message,
-      'code': instance.code,
-      'stack': instance.stack,
-    };

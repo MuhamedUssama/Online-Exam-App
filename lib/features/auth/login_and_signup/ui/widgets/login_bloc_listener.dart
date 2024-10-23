@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_exam_app/features/home/home_screen.dart';
 
 import '../../../../../core/utils/app_dialogs.dart';
 import '../../../../../core/utils/app_strings.dart';
@@ -39,6 +40,14 @@ class LoginBlocListener extends StatelessWidget {
             message: AppStrings.userLoggedInSuccessfully,
             context: context,
             posActionTitle: AppStrings.ok,
+            posAction: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HomeScreen(),
+                ),
+              );
+            },
           );
         }
       },

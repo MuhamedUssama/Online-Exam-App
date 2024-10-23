@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/core/results/result.dart';
 
+import '../../../../../../core/cache/shared_preferences.dart';
+import '../../../../../../core/constants/app_constants.dart';
 import '../../../domain/entities/auth_response_entity.dart';
 import '../../../domain/usecases/login_usecase.dart';
 import 'login_actions.dart';
@@ -37,6 +39,12 @@ class LoginViewModel extends Cubit<LoginStates> {
       switch (result) {
         case Success<AuthResponseEntity?>():
           {
+            if (isChecked) {
+              SharedPreferencesHelper.setSecuredString(
+                key: AppConstants.token,
+                value: result.data?.token ?? "",
+              );
+            }
             emit(LoginSuccessState(result.data));
           }
         case Fail<AuthResponseEntity?>():
