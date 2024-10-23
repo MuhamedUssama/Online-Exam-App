@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:online_exam_app/config/theme/app_colors.dart';
 
-abstract class AppTheme {
+class AppTheme {
   static ThemeData lightThemeData = ThemeData(
-    elevatedButtonTheme: ElevatedButtonThemeData(
+    elevatedButtonTheme: const ElevatedButtonThemeData(
       style: ButtonStyle(
         backgroundColor: WidgetStatePropertyAll(ColorsManager.baseBlue),
+        textStyle: WidgetStatePropertyAll(TextStyle(color: Colors.white)),
       ),
-    )
-      // scaffoldBackgroundColor: Colors.white,
-      );
+    ),
+  );
 }

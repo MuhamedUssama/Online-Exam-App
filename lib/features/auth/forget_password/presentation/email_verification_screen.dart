@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../config/theme/test_style.dart';
 import '../../../../core/di/di.dart';
-import '../../../../core/utils/dialog_utils.dart';
-import 'reset_password_screen.dart';
-import 'view_models/email_verification_view_model/email_verification_states.dart';
+import '../../../../core/utils/app_strings.dart';
+import 'view_models/email_verification_view_model/email_verification_actions.dart';
 import 'view_models/email_verification_view_model/email_verification_view_model.dart';
 import 'widgets/custom_otp_widget.dart';
+import 'widgets/email_verivication_bloc_listener.dart';
 import 'widgets/screen_description_widget.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
@@ -32,59 +31,21 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Password', style: TextStyles.font20BaseDarkMedium),
+        title: Text(
+          AppStrings.passwordAppBarTitle,
+          style: TextStyles.font20BaseDarkMedium,
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child:
-            BlocListener<EmailVerificationViewModel, EmailVerificationStates>(
-          bloc: viewModel,
-          listener: (context, state) {
-            if (state is EmailVerificationLoadingState) {
-              DialogUtils.showLoading(context, state.message);
-            } else if (state is EmailVerificationErrorState) {
-              DialogUtils.hideLoading(context);
-              DialogUtils.showMessage(
-                context,
-                title: "Error",
-                contentMessage: state.errorMessage ?? "Somthing went wrong",
-                posActionName: "Ok",
-              );
-            } else if (state is EmailVerificationSuccessState) {
-              DialogUtils.hideLoading(context);
-              DialogUtils.showMessage(
-                context,
-                title: "Successfully",
-                contentMessage:
-                    "Check your email please, we will send to you a verification code in 60s.",
-                posActionName: "Ok",
-                posActionFunction: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ResetPasswordScreen(),
-                    ),
-                  );
-                },
-              );
-            } else if (state is EmailVerificationResentCodeSuccesState) {
-              DialogUtils.hideLoading(context);
-              DialogUtils.showMessage(
-                context,
-                title: "Successfully",
-                contentMessage:
-                    "Check your email please, Code resent successfully.",
-                posActionName: "Ok",
-              );
-            }
-          },
+        child: EmailVerivicationBlocListener(
+          viewModel: viewModel,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const ScreenDescriptionWidget(
-                title: 'Email verification',
-                description:
-                    'Please enter your code that send to your\n email address ',
+                title: AppStrings.emailVerivicationScreenTitle,
+                description: AppStrings.emailVerivicationScreenDescription,
               ),
               SizedBox(height: 32.h),
               Form(
@@ -101,7 +62,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Didn't receive code?",
+                    AppStrings.didnotRcieveCode,
                     style: TextStyles.font16BaseBlackRegular,
                   ),
                   TextButton(
@@ -109,7 +70,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                       viewModel.doIntent(ResendCodeAction());
                     },
                     child: Text(
-                      "Resend",
+                      AppStrings.resendText,
                       style: TextStyles.font16BaseBlueRegular,
                     ),
                   ),

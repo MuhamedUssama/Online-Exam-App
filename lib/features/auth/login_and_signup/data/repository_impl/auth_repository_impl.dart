@@ -3,9 +3,9 @@ import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/core/errors/exceptions.dart';
 import 'package:online_exam_app/core/results/result.dart';
 
+import '../../domain/entities/auth_response_entity.dart';
 import '../../domain/repository/auth_repository.dart';
 import '../data_sources/auth_data_source.dart';
-import '../models/User.dart';
 
 @Injectable(as: AuthRepository)
 class AuthRepositoryImpl implements AuthRepository {
@@ -20,7 +20,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Result<User?>> login(
+  Future<Result<AuthResponseEntity?>> login(
       {required String email, required String password}) async {
     if (await _checkInternetConnection()) {
       return dataSource.login(email: email, password: password);
@@ -29,7 +29,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Result<User?>> signUp(
+  Future<Result<AuthResponseEntity?>> signUp(
       {required String username,
       required String firstName,
       required String lastName,
@@ -39,13 +39,14 @@ class AuthRepositoryImpl implements AuthRepository {
       required String phone}) async {
     if (await _checkInternetConnection()) {
       return dataSource.signUp(
-          username: username,
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          password: password,
-          rePassword: rePassword,
-          phone: phone);
+        username: username,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+        rePassword: rePassword,
+        phone: phone,
+      );
     }
     return Fail(const NoInternetConnectionException());
   }

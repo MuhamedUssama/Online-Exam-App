@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam_app/core/di/di.dart';
-import 'package:online_exam_app/features/auth/login_and_signup/ui/login/login_screen.dart';
 
 import '../../../../config/theme/test_style.dart';
-import '../../../../core/utils/dialog_utils.dart';
+import '../../../../core/utils/app_strings.dart';
+import '../../../../core/utils/validation_utils.dart';
 import '../../../../core/widgets/custom_blue_button.dart';
 import '../../../../core/widgets/custom_form_field.dart';
-import 'view_models/reset_password_view_model/reset_password_states.dart';
+import 'view_models/reset_password_view_model/reset_password_actions.dart';
 import 'view_models/reset_password_view_model/reset_password_view_model.dart';
+import 'widgets/reset_password_bloc_listener.dart';
 import 'widgets/screen_description_widget.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
@@ -34,35 +34,13 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Password', style: TextStyles.font20BaseDarkMedium),
+        title: Text(
+          AppStrings.passwordAppBarTitle,
+          style: TextStyles.font20BaseDarkMedium,
+        ),
       ),
-      body: BlocListener<ResetPasswordViewModel, ResetPasswordStates>(
-        bloc: viewModel,
-        listener: (context, state) {
-          if (state is ResetPasswordStatesLoadingState) {
-            DialogUtils.showLoading(context, state.message);
-          } else if (state is ResetPasswordStatesErrorState) {
-            DialogUtils.hideLoading(context);
-            DialogUtils.showMessage(
-              context,
-              title: "Error",
-              contentMessage: state.errorMessage ?? "Something went wrong",
-              posActionName: "Ok",
-            );
-          } else if (state is ResetPasswordStatesSuccessState) {
-            DialogUtils.hideLoading(context);
-            DialogUtils.showMessage(context,
-                title: "Successfully",
-                contentMessage: "You now have a new password",
-                posActionName: "Ok", posActionFunction: () {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LoginScreen(),
-                  ));
-            });
-          }
-        },
+      body: ResetPasswordBlocListener(
+        viewModel: viewModel,
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Form(
@@ -71,14 +49,13 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const ScreenDescriptionWidget(
-                  title: 'Reset password',
-                  description:
-                      'Password must not be empty and must contain \n6 characters with upper case letter and one \nnumber at least ',
+                  title: AppStrings.resetPasswordScreenTitle,
+                  description: AppStrings.resetPasswordScreenDescription,
                 ),
                 SizedBox(height: 32.h),
                 CustomFormFiled(
-                  hintText: 'Enter your password',
-                  labelText: 'New password',
+                  hintText: AppStrings.passwordHintText,
+                  labelText: AppStrings.newPasswordLabelText,
                   controller: viewModel.newPassword,
                   secureText: viewModel.isObscureNewPassword,
                   suffixIcon: GestureDetector(
@@ -96,16 +73,16 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                         : const Icon(Icons.visibility),
                   ),
                   validator: (value) {
-                    if (value == null || value.trim().isEmpty) {
-                      return "Please enter your email address";
-                    }
-                    return null;
+                    return AppValidator.validateFieldIsNotEmpty(
+                      value: value,
+                      message: AppStrings.emptyPassword,
+                    );
                   },
                 ),
                 SizedBox(height: 24.h),
                 CustomFormFiled(
-                  hintText: 'Confirm Password',
-                  labelText: 'Confirm Password',
+                  hintText: AppStrings.confirmPasswordHintText,
+                  labelText: AppStrings.confirmPasswordLabelText,
                   controller: viewModel.confirmPassword,
                   secureText: viewModel.isObscureConfirmPassword,
                   suffixIcon: GestureDetector(
@@ -123,21 +100,16 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                         : const Icon(Icons.visibility),
                   ),
                   validator: (value) {
-                    if (value == null || value.trim().isEmpty) {
-                      return "Please enter your email address";
-                    }
-
-                    if (viewModel.confirmPassword.text !=
-                        viewModel.newPassword.text) {
-                      return "Password does not match";
-                    }
-                    return null;
+                    return AppValidator.validateConfirmPassword(
+                      confirmPassword: value,
+                      password: viewModel.newPassword.text,
+                    );
                   },
                 ),
                 SizedBox(height: 48.h),
                 CustomBlueButton(
                   width: width,
-                  text: 'Continue',
+                  text: AppStrings.continueText,
                   onPresed: () {
                     viewModel.doIntent(ResetPasswordAction());
                   },

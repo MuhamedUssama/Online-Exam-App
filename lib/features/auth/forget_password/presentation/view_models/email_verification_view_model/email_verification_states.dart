@@ -1,12 +1,6 @@
 import '../../../domain/entities/email_verification_entity/email_verification_entity.dart';
 import '../../../domain/entities/forget_password_entity/forget_passowrd_entity.dart';
 
-sealed class VerificationAction {}
-
-class VerifyEmailAction extends VerificationAction {}
-
-class ResendCodeAction extends VerificationAction {}
-
 sealed class EmailVerificationStates {}
 
 class EmailVerificationInitialState extends EmailVerificationStates {}
