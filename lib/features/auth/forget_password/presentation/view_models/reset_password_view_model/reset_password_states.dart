@@ -1,9 +1,5 @@
 import '../../../domain/entities/reset_password_entity/reset_password_entity.dart';
 
-sealed class ResetPasswordActions {}
-
-class ResetPasswordAction extends ResetPasswordActions {}
-
 sealed class ResetPasswordStates {}
 
 class ResetPasswordStatesInitialState extends ResetPasswordStates {}

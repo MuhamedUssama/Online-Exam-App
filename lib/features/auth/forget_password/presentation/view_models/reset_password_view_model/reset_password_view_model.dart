@@ -7,6 +7,7 @@ import '../../../../../../core/constants/app_constants.dart';
 import '../../../../../../core/results/result.dart';
 import '../../../domain/entities/reset_password_entity/reset_password_entity.dart';
 import '../../../domain/usecases/reset_password_usecase.dart';
+import 'reset_password_actions.dart';
 import 'reset_password_states.dart';
 
 @injectable

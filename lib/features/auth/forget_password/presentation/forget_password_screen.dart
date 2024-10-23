@@ -7,7 +7,7 @@ import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/validation_utils.dart';
 import '../../../../core/widgets/custom_blue_button.dart';
 import '../../../../core/widgets/custom_form_field.dart';
-import 'view_models/forget_password_view_model/forget_password_states.dart';
+import 'view_models/forget_password_view_model/forget_password_actions.dart';
 import 'view_models/forget_password_view_model/forget_password_view_model.dart';
 import 'widgets/forget_password_bloc_listener.dart';
 import 'widgets/screen_description_widget.dart';

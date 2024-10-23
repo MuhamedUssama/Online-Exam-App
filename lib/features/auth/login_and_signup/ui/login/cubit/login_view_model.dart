@@ -5,6 +5,7 @@ import 'package:online_exam_app/core/results/result.dart';
 
 import '../../../domain/entities/auth_response_entity.dart';
 import '../../../domain/usecases/login_usecase.dart';
+import 'login_actions.dart';
 import 'login_states.dart';
 
 @injectable
@@ -46,7 +47,3 @@ class LoginViewModel extends Cubit<LoginStates> {
     }
   }
 }
-
-sealed class LoginScreenIntent {}
-
-class LoginIntent extends LoginScreenIntent {}

@@ -9,6 +9,7 @@ import '../../../domain/entities/email_verification_entity/email_verification_en
 import '../../../domain/entities/forget_password_entity/forget_passowrd_entity.dart';
 import '../../../domain/usecases/forget_password_usecase.dart';
 import '../../../domain/usecases/verify_email_usecase.dart';
+import 'email_verification_actions.dart';
 import 'email_verification_states.dart';
 
 @injectable

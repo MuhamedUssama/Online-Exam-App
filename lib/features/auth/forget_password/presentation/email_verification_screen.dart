@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../config/theme/test_style.dart';
 import '../../../../core/di/di.dart';
 import '../../../../core/utils/app_strings.dart';
-import 'view_models/email_verification_view_model/email_verification_states.dart';
+import 'view_models/email_verification_view_model/email_verification_actions.dart';
 import 'view_models/email_verification_view_model/email_verification_view_model.dart';
 import 'widgets/custom_otp_widget.dart';
 import 'widgets/email_verivication_bloc_listener.dart';

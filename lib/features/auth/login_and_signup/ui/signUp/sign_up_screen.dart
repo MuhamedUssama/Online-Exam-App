@@ -8,6 +8,7 @@ import '../../../../../core/utils/validation_utils.dart';
 import '../../../../../core/widgets/custom_blue_button.dart';
 import '../../../../../core/widgets/custom_form_field.dart';
 import '../widgets/signup_bloc_listener.dart';
+import 'cubit/sign_up_actions.dart';
 import 'cubit/sign_up_view_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

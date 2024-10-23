@@ -6,6 +6,7 @@ import 'package:online_exam_app/features/auth/login_and_signup/ui/signUp/cubit/s
 
 import '../../../domain/entities/auth_response_entity.dart';
 import '../../../domain/usecases/sign_up_usecase.dart';
+import 'sign_up_actions.dart';
 
 @injectable
 class SignUpViewModel extends Cubit<SignUpStates> {
@@ -37,13 +38,14 @@ class SignUpViewModel extends Cubit<SignUpStates> {
       emit(SignUpLoadingState());
 
       var result = await usecase.invoke(
-          username: username.text,
-          firstName: firstName.text,
-          lastName: lastName.text,
-          email: email.text,
-          password: password.text,
-          rePassword: rePassword.text,
-          phone: phone.text);
+        username: username.text,
+        firstName: firstName.text,
+        lastName: lastName.text,
+        email: email.text,
+        password: password.text,
+        rePassword: rePassword.text,
+        phone: phone.text,
+      );
       switch (result) {
         case Success<AuthResponseEntity?>():
           {
@@ -57,7 +59,3 @@ class SignUpViewModel extends Cubit<SignUpStates> {
     }
   }
 }
-
-sealed class SignUpScreenIntent {}
-
-class SignUpIntent extends SignUpScreenIntent {}
