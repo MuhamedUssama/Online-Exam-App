@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/utils/app_dialogs.dart';
+import '../../../../../core/utils/app_strings.dart';
 import '../reset_password_screen.dart';
 import '../view_models/email_verification_view_model/email_verification_states.dart';
 import '../view_models/email_verification_view_model/email_verification_view_model.dart';
@@ -22,20 +23,23 @@ class EmailVerivicationBlocListener extends StatelessWidget {
       bloc: viewModel,
       listener: (context, state) {
         if (state is EmailVerificationLoadingState) {
-          AppDialogs.showLoading(message: 'Loading..', context: context);
+          AppDialogs.showLoading(
+            message: AppStrings.loadingText,
+            context: context,
+          );
         } else if (state is EmailVerificationErrorState) {
           AppDialogs.hideLoading(context);
           AppDialogs.showFailDialog(
-            message: state.errorMessage ?? "Somthing went wrong",
+            message: state.errorMessage ?? AppStrings.somethingWentWrong,
             context: context,
-            posActionTitle: 'Ok',
+            posActionTitle: AppStrings.ok,
           );
         } else if (state is EmailVerificationSuccessState) {
           AppDialogs.hideLoading(context);
           AppDialogs.showSuccessDialog(
-            message: "Now you can change your password",
+            message: AppStrings.emailVerificationSuccessMessage,
             context: context,
-            posActionTitle: 'Ok',
+            posActionTitle: AppStrings.ok,
             posAction: () {
               Navigator.pushReplacement(
                 context,
@@ -48,9 +52,9 @@ class EmailVerivicationBlocListener extends StatelessWidget {
         } else if (state is EmailVerificationResentCodeSuccesState) {
           AppDialogs.hideLoading(context);
           AppDialogs.showSuccessDialog(
-            message: 'Check your email please, Code resent successfully.',
+            message: AppStrings.resendCodeSuccessState,
             context: context,
-            posActionTitle: 'Ok',
+            posActionTitle: AppStrings.ok,
           );
         }
       },

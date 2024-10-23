@@ -56,7 +56,24 @@ class AppStrings {
   static const String emptyPhone = 'Please enter your phone';
   static const String passwordDontMatch = "Password don't match";
 
+  static const String invalidCode = 'Invalid code';
+
   static const String continueText = "Continue";
+
+  static const String loadingText = "Loading..";
+  static const String somethingWentWrong = "Somthing went wrong";
+  static const String ok = 'Ok';
+
+  static const String userLoggedInSuccessfully = 'User Logged In Successfully';
+  static const String userCreatedSuccessfully = 'User Created Successfully';
+  static const String forgetPasswordSuccessMessage =
+      "Check your email please, we will send to you a verification code in 60s.";
+  static const String emailVerificationSuccessMessage =
+      "Now you can change your password";
+  static const String resendCodeSuccessState =
+      'Check your email please, Code resent successfully.';
+  static const String resetPasswordSuccessMessage =
+      "You now have a new password";
 
   static RegExp emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
 }

@@ -4,6 +4,8 @@ import 'package:pinput/pinput.dart';
 
 import '../../../../../config/theme/app_colors.dart';
 import '../../../../../config/theme/test_style.dart';
+import '../../../../../core/utils/app_strings.dart';
+import '../../../../../core/utils/validation_utils.dart';
 
 class CustomOtpWidget extends StatelessWidget {
   final TextEditingController controller;
@@ -48,11 +50,10 @@ class CustomOtpWidget extends StatelessWidget {
       errorTextStyle: const TextStyle(color: ColorsManager.errorColor),
       keyboardType: TextInputType.number,
       validator: (pin) {
-        if (pin == null || pin.trim().isEmpty) {
-          return "Invalid code";
-        }
-
-        return null;
+        return AppValidator.validateFieldIsNotEmpty(
+          value: pin,
+          message: AppStrings.invalidCode,
+        );
       },
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/utils/app_dialogs.dart';
+import '../../../../../core/utils/app_strings.dart';
 import '../login/login_screen.dart';
 import '../signUp/cubit/sign_up_states.dart';
 import '../signUp/cubit/sign_up_view_model.dart';
@@ -22,21 +23,23 @@ class SignupBlocListener extends StatelessWidget {
       bloc: viewModel,
       listener: (context, state) {
         if (state is SignUpLoadingState) {
-          AppDialogs.showLoading(message: 'Loading', context: context);
+          AppDialogs.showLoading(
+            message: AppStrings.loadingText,
+            context: context,
+          );
         } else if (state is SignUpErrorState) {
           AppDialogs.hideLoading(context);
           AppDialogs.showFailDialog(
-            message:
-                state.errorMessage ?? "Something went wrong, please try again",
+            message: state.errorMessage ?? AppStrings.somethingWentWrong,
             context: context,
-            posActionTitle: 'Ok',
+            posActionTitle: AppStrings.ok,
           );
         } else if (state is SignUpSuccessState) {
           AppDialogs.hideLoading(context);
           AppDialogs.showSuccessDialog(
-            message: 'Created User Successfully',
+            message: AppStrings.userCreatedSuccessfully,
             context: context,
-            posActionTitle: 'Ok',
+            posActionTitle: AppStrings.ok,
             posAction: () {
               Navigator.pushReplacement(
                 context,

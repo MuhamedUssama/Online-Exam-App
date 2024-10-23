@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/utils/app_dialogs.dart';
+import '../../../../../core/utils/app_strings.dart';
 import '../login/cubit/login_states.dart';
 import '../login/cubit/login_view_model.dart';
 
@@ -21,20 +22,23 @@ class LoginBlocListener extends StatelessWidget {
       bloc: viewModel,
       listener: (context, state) {
         if (state is LoginLoadingState) {
-          AppDialogs.showLoading(message: 'Loading..', context: context);
+          AppDialogs.showLoading(
+            message: AppStrings.loadingText,
+            context: context,
+          );
         } else if (state is LoginErrorState) {
           AppDialogs.hideLoading(context);
           AppDialogs.showFailDialog(
-            message: state.errorMessage ?? "Somthing went wrong",
+            message: state.errorMessage ?? AppStrings.somethingWentWrong,
             context: context,
-            posActionTitle: 'Ok',
+            posActionTitle: AppStrings.ok,
           );
         } else if (state is LoginSuccessState) {
           AppDialogs.hideLoading(context);
           AppDialogs.showSuccessDialog(
-            message: 'User Logged In Successfully',
+            message: AppStrings.userLoggedInSuccessfully,
             context: context,
-            posActionTitle: 'Ok',
+            posActionTitle: AppStrings.ok,
           );
         }
       },
