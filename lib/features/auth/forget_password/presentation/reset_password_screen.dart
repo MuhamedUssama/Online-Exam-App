@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam_app/core/di/di.dart';
-import 'package:online_exam_app/features/auth/login_and_signup/ui/login/login_screen.dart';
 
 import '../../../../config/theme/test_style.dart';
 import '../../../../core/utils/app_strings.dart';
-import '../../../../core/utils/dialog_utils.dart';
 import '../../../../core/utils/validation_utils.dart';
 import '../../../../core/widgets/custom_blue_button.dart';
 import '../../../../core/widgets/custom_form_field.dart';
 import 'view_models/reset_password_view_model/reset_password_states.dart';
 import 'view_models/reset_password_view_model/reset_password_view_model.dart';
+import 'widgets/reset_password_bloc_listener.dart';
 import 'widgets/screen_description_widget.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
@@ -41,34 +39,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
           style: TextStyles.font20BaseDarkMedium,
         ),
       ),
-      body: BlocListener<ResetPasswordViewModel, ResetPasswordStates>(
-        bloc: viewModel,
-        listener: (context, state) {
-          if (state is ResetPasswordStatesLoadingState) {
-            DialogUtils.showLoading(context, state.message);
-          } else if (state is ResetPasswordStatesErrorState) {
-            DialogUtils.hideLoading(context);
-            DialogUtils.showMessage(
-              context,
-              title: "Error",
-              contentMessage: state.errorMessage ?? "Something went wrong",
-              posActionName: "Ok",
-            );
-          } else if (state is ResetPasswordStatesSuccessState) {
-            DialogUtils.hideLoading(context);
-            DialogUtils.showMessage(context,
-                title: "Successfully",
-                contentMessage: "You now have a new password",
-                posActionName: "Ok", posActionFunction: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const LoginScreen(),
-                ),
-              );
-            });
-          }
-        },
+      body: ResetPasswordBlocListener(
+        viewModel: viewModel,
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Form(

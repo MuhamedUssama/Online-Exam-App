@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam_app/config/router/routes_name.dart';
 import 'package:online_exam_app/core/di/di.dart';
-import 'package:online_exam_app/features/auth/login_and_signup/ui/login/login_screen.dart';
 
 import '../../../../../config/theme/test_style.dart';
 import '../../../../../core/utils/app_strings.dart';
-import '../../../../../core/utils/dialog_utils.dart';
 import '../../../../../core/utils/validation_utils.dart';
 import '../../../../../core/widgets/custom_blue_button.dart';
 import '../../../../../core/widgets/custom_form_field.dart';
-import 'cubit/sign_up_states.dart';
+import '../widgets/signup_bloc_listener.dart';
 import 'cubit/sign_up_view_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -48,32 +45,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: BlocListener<SignUpViewModel, SignUpStates>(
-          bloc: viewModel,
-          listener: (context, state) {
-            if (state is SignUpLoadingState) {
-              DialogUtils.showLoading(context, 'LOADING');
-            } else if (state is SignUpErrorState) {
-              DialogUtils.hideLoading(context);
-              DialogUtils.showMessage(context,
-                  contentMessage: state.errorMessage ?? "Please Try Again",
-                  title: 'Error',
-                  posActionName: 'Ok');
-            } else if (state is SignUpSuccessState) {
-              DialogUtils.hideLoading(context);
-              DialogUtils.showMessage(context,
-                  contentMessage: 'Created User Successfully',
-                  title: 'Success',
-                  posActionName: 'Ok', posActionFunction: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LoginScreen(),
-                  ),
-                );
-              });
-            }
-          },
+        child: SignupBlocListener(
+          viewModel: viewModel,
           child: SingleChildScrollView(
             child: Form(
               key: viewModel.formKey,

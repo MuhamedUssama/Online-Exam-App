@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../config/theme/test_style.dart';
 import '../../../../core/di/di.dart';
 import '../../../../core/utils/app_strings.dart';
-import '../../../../core/utils/dialog_utils.dart';
 import '../../../../core/utils/validation_utils.dart';
 import '../../../../core/widgets/custom_blue_button.dart';
 import '../../../../core/widgets/custom_form_field.dart';
-import 'email_verification_screen.dart';
 import 'view_models/forget_password_view_model/forget_password_states.dart';
 import 'view_models/forget_password_view_model/forget_password_view_model.dart';
+import 'widgets/forget_password_bloc_listener.dart';
 import 'widgets/screen_description_widget.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
@@ -41,38 +39,8 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: BlocListener<ForgetPasswordViewModel, ForgetPasswordStates>(
-          bloc: viewModel,
-          listener: (context, state) {
-            if (state is ForgetPasswordLoadingState) {
-              DialogUtils.showLoading(context, state.message);
-            } else if (state is ForgetPasswordErrorState) {
-              DialogUtils.hideLoading(context);
-              DialogUtils.showMessage(
-                context,
-                title: "Error",
-                contentMessage: state.errorMessage ?? "Somthing went wrong",
-                posActionName: "Ok",
-              );
-            } else if (state is ForgetPasswordSuccessState) {
-              DialogUtils.hideLoading(context);
-              DialogUtils.showMessage(
-                context,
-                title: "Successfully",
-                contentMessage:
-                    "Check your email please, we will send to you a verification code in 60s.",
-                posActionName: "Ok",
-                posActionFunction: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const EmailVerificationScreen(),
-                    ),
-                  );
-                },
-              );
-            }
-          },
+        child: ForgetPasswordBlocListener(
+          viewModel: viewModel,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [

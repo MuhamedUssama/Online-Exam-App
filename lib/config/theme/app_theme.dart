@@ -6,6 +6,7 @@ abstract class AppTheme {
     elevatedButtonTheme: const ElevatedButtonThemeData(
       style: ButtonStyle(
         backgroundColor: WidgetStatePropertyAll(ColorsManager.baseBlue),
+        textStyle: WidgetStatePropertyAll(TextStyle(color: Colors.white)),
       ),
     ),
   );

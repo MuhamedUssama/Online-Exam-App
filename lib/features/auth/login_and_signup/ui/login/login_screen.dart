@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam_app/config/theme/app_colors.dart';
 import 'package:online_exam_app/core/utils/app_strings.dart';
-import 'package:online_exam_app/core/utils/dialog_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam_app/features/auth/login_and_signup/ui/signUp/sign_up_screen.dart';
 
@@ -13,7 +11,7 @@ import '../../../../../core/utils/validation_utils.dart';
 import '../../../../../core/widgets/custom_blue_button.dart';
 import '../../../../../core/widgets/custom_form_field.dart';
 
-import 'cubit/login_states.dart';
+import '../widgets/login_bloc_listener.dart';
 import 'cubit/login_view_model.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -45,27 +43,8 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: BlocListener<LoginViewModel, LoginStates>(
-          bloc: viewModel,
-          listener: (context, state) {
-            if (state is LoginLoadingState) {
-              DialogUtils.showLoading(context, 'Loading.');
-            } else if (state is LoginErrorState) {
-              DialogUtils.hideLoading(context);
-              DialogUtils.showMessage(context,
-                  contentMessage: state.errorMessage ?? "Please Try Again",
-                  title: 'Error',
-                  posActionName: 'Ok');
-            } else if (state is LoginSuccessState) {
-              DialogUtils.hideLoading(context);
-              DialogUtils.showMessage(
-                context,
-                contentMessage: 'User Logged In Successfully',
-                title: 'Success',
-                posActionName: 'Ok',
-              );
-            }
-          },
+        child: LoginBlocListener(
+          viewModel: viewModel,
           child: Form(
             key: viewModel.formKey,
             child: Column(
