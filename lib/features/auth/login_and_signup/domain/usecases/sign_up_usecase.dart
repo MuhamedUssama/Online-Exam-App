@@ -2,7 +2,7 @@ import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/features/auth/login_and_signup/domain/repository/auth_repository.dart';
 
 import '../../../../../core/results/result.dart';
-import '../../data/models/User.dart';
+import '../../data/models/user.dart';
 
 @injectable
 class SignUpUsecase {

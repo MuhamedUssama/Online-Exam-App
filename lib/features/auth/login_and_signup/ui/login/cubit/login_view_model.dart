@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/core/results/result.dart';
 
-import '../../../data/models/User.dart';
+import '../../../data/models/user.dart';
 
 import '../../../domain/usecases/login_usecase.dart';
 import 'login_states.dart';

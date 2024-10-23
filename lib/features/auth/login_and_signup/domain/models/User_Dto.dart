@@ -1,13 +1,4 @@
-import '../../data/models/User.dart';
-
-/// id : "67001692f87c48663aee3ad7"
-/// username : "elevate"
-/// firstName : "Elevate"
-/// lastName : "Tech"
-/// email : "admin@elevate.com"
-/// phone : "01094155711"
-/// isVerified : false
-/// token : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDNmYjYyZTc3ZDY4NTk1YTI5MWVlZSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI4MzE1MjAyfQ.dViISnNFpQi2EnEhC8GLt4iu1mteE4tEdABDkMdyZfo"
+import '../../data/models/user.dart';
 
 class UserDto {
   UserDto({
@@ -74,13 +65,14 @@ class UserDto {
 
   User toUser() {
     return User(
-        id: id,
-        email: email,
-        firstName: firstName,
-        isVerified: isVerified,
-        lastName: lastName,
-        phone: phone,
-        token: token,
-        username: username);
+      id: id,
+      email: email,
+      firstName: firstName,
+      isVerified: isVerified,
+      lastName: lastName,
+      phone: phone,
+      token: token,
+      username: username,
+    );
   }
 }

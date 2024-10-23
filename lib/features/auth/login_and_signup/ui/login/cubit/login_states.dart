@@ -1,4 +1,4 @@
-import '../../../data/models/User.dart';
+import '../../../data/models/user.dart';
 
 sealed class LoginStates {}
 

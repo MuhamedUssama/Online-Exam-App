@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/core/results/result.dart';
 import 'package:online_exam_app/features/auth/login_and_signup/ui/signUp/cubit/sign_up_states.dart';
 
-import '../../../data/models/User.dart';
+import '../../../data/models/user.dart';
 
 import '../../../domain/usecases/sign_up_usecase.dart';
 

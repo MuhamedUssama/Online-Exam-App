@@ -5,7 +5,7 @@ import 'package:online_exam_app/core/results/result.dart';
 
 import '../../domain/repository/auth_repository.dart';
 import '../data_sources/auth_data_source.dart';
-import '../models/User.dart';
+import '../models/user.dart';
 
 @Injectable(as: AuthRepository)
 class AuthRepositoryImpl implements AuthRepository {

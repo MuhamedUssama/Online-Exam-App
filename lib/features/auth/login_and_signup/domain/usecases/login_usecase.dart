@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/core/results/result.dart';
 
-import '../../data/models/User.dart';
+import '../../data/models/user.dart';
 import '../repository/auth_repository.dart';
 
 @injectable
