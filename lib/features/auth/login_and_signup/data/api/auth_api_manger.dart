@@ -2,7 +2,7 @@ import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/core/networking/api_consumer.dart';
 import 'package:online_exam_app/core/networking/end_points.dart';
 
-import '../models/auth_response.dart';
+import '../models/auth_response_model.dart';
 
 @singleton
 @injectable
@@ -10,15 +10,15 @@ class ApiManger {
   ApiConsumer apiConsumer;
   @factoryMethod
   ApiManger(this.apiConsumer);
-  Future<AuthResponse> login(
+  Future<AuthResponseModel> login(
       {required String email, required String password}) async {
     var json = await apiConsumer
         .post(EndPoints.loginUrl, body: {'email': email, 'password': password});
-    var authResponse = AuthResponse.fromJson(json);
+    var authResponse = AuthResponseModel.fromJson(json);
     return authResponse;
   }
 
-  Future<AuthResponse> signUp({
+  Future<AuthResponseModel> signUp({
     required String username,
     required String firstName,
     required String lastName,
@@ -36,7 +36,7 @@ class ApiManger {
       "rePassword": rePassword,
       "phone": phone
     });
-    var authResponse = AuthResponse.fromJson(json);
+    var authResponse = AuthResponseModel.fromJson(json);
     return authResponse;
   }
 }

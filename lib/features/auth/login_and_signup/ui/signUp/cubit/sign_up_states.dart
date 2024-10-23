@@ -1,4 +1,4 @@
-import '../../../data/models/user.dart';
+import '../../../domain/entities/auth_response_entity.dart';
 
 sealed class SignUpStates {}
 
@@ -12,6 +12,6 @@ class SignUpErrorState extends SignUpStates {
 }
 
 class SignUpSuccessState extends SignUpStates {
-  User? user;
+  AuthResponseEntity? user;
   SignUpSuccessState(this.user);
 }

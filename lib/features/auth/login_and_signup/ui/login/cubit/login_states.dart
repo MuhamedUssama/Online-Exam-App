@@ -1,4 +1,4 @@
-import '../../../data/models/user.dart';
+import '../../../domain/entities/auth_response_entity.dart';
 
 sealed class LoginStates {}
 
@@ -12,6 +12,6 @@ class LoginErrorState extends LoginStates {
 }
 
 class LoginSuccessState extends LoginStates {
-  User? user;
+  AuthResponseEntity? user;
   LoginSuccessState(this.user);
 }

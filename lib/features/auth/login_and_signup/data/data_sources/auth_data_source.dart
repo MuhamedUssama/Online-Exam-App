@@ -1,12 +1,12 @@
 import '../../../../../core/results/result.dart';
-import '../models/user.dart';
+import '../../domain/entities/auth_response_entity.dart';
 
 abstract class AuthDataSource {
-  Future<Result<User?>> login({
+  Future<Result<AuthResponseEntity?>> login({
     required String email,
     required String password,
   });
-  Future<Result<User?>> signUp({
+  Future<Result<AuthResponseEntity?>> signUp({
     required String username,
     required String firstName,
     required String lastName,
