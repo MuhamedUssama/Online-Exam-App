@@ -12,10 +12,3 @@ ForgetPasswordEntity _$ForgetPasswordEntityFromJson(
       message: json['message'] as String?,
       info: json['info'] as String?,
     );
-
-Map<String, dynamic> _$ForgetPasswordEntityToJson(
-        ForgetPasswordEntity instance) =>
-    <String, dynamic>{
-      'message': instance.message,
-      'info': instance.info,
-    };

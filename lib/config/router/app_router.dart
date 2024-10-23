@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:online_exam_app/config/router/routes_name.dart';
 import 'package:online_exam_app/features/auth/login_and_signup/ui/signUp/sign_up_screen.dart';
+import 'package:online_exam_app/features/home/home_screen.dart';
 
 import '../../features/auth/login_and_signup/ui/login/login_screen.dart';
 
@@ -34,6 +35,12 @@ class AppRouters {
         return MaterialPageRoute(
           builder: (context) => const SignUpScreen(),
         );
+
+      case RoutesName.homeScreen:
+        return MaterialPageRoute(
+          builder: (context) => const HomeScreen(),
+        );
+
       default:
         return MaterialPageRoute(builder: (context) => unDefinePageRoute());
     }
