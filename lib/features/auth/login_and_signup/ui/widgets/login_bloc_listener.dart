@@ -44,7 +44,7 @@ class LoginBlocListener extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const HomeScreen(),
+                  builder: (context) => HomeScreen(),
                 ),
               );
             },

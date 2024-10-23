@@ -78,4 +78,16 @@ class TextStyles {
     decoration: TextDecoration.underline,
     color: ColorsManager.baseBlack,
   );
+
+  static TextStyle text12BaseBlueSemiBold = TextStyle(
+    fontWeight: FontWeightHelper.semiBold,
+    fontSize: 12.sp,
+    color: ColorsManager.baseBlue,
+  );
+
+  static TextStyle text12black30SemiBold = TextStyle(
+    fontWeight: FontWeightHelper.semiBold,
+    fontSize: 12.sp,
+    color: ColorsManager.black30,
+  );
 }
