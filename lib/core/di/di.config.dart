@@ -51,6 +51,7 @@ import '../../features/auth/login_and_signup/ui/login/cubit/login_view_model.dar
     as _i788;
 import '../../features/auth/login_and_signup/ui/signUp/cubit/sign_up_view_model.dart'
     as _i479;
+import '../../features/home/home_screen_view_model.dart' as _i296;
 import '../cache/shared_preferences.dart' as _i254;
 import '../networking/api_consumer.dart' as _i681;
 import '../networking/dio_consumer.dart' as _i1042;
@@ -66,6 +67,7 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
+    gh.factory<_i296.HomeScreenViewModel>(() => _i296.HomeScreenViewModel());
     gh.singleton<_i254.SharedPreferencesHelper>(
         () => _i254.SharedPreferencesHelper());
     gh.factory<_i681.ApiConsumer>(() => _i1042.DioConsumer());
