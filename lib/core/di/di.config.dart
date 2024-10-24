@@ -58,6 +58,10 @@ import '../../features/home/tabs/profile_tab/data/data_sourse/user_profile_data_
     as _i959;
 import '../../features/home/tabs/profile_tab/data/data_sourse/user_profile_data_sourse_impl.dart'
     as _i995;
+import '../../features/home/tabs/profile_tab/data/repository_impl/user_profile_repository_impl.dart'
+    as _i697;
+import '../../features/home/tabs/profile_tab/domain/repository/user_profile_repository.dart'
+    as _i965;
 import '../cache/shared_preferences.dart' as _i254;
 import '../networking/api_consumer.dart' as _i681;
 import '../networking/dio_consumer.dart' as _i1042;
@@ -101,6 +105,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i833.VerifyEmailUsecase(gh<_i503.ForgetPasswordRepository>()));
     gh.factory<_i619.AuthRepository>(
         () => _i505.AuthRepositoryImpl(gh<_i98.AuthDataSource>()));
+    gh.factory<_i965.UserProfileRepository>(() =>
+        _i697.UserProfileRepositoryImpl(gh<_i959.UserProfileDataSource>()));
     gh.factory<_i539.ForgetPasswordViewModel>(
         () => _i539.ForgetPasswordViewModel(gh<_i995.ForgetPasswordUsecase>()));
     gh.factory<_i384.LoginUsecase>(
