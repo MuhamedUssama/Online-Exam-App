@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../../domain/entities/user_entity.dart';
+
 part 'user_response_model.g.dart';
 
 @JsonSerializable()
@@ -30,4 +32,15 @@ class UserResponseModel {
 
   factory UserResponseModel.fromJson(Map<String, dynamic> json) =>
       _$UserResponseModelFromJson(json);
+
+  UserEntity toUserEntity() {
+    return UserEntity(
+      email: email,
+      firstName: firstName,
+      id: id,
+      lastName: lastName,
+      phone: phone,
+      userName: userName,
+    );
+  }
 }

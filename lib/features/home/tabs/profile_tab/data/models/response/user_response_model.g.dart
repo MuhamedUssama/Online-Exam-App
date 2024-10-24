@@ -18,3 +18,16 @@ UserResponseModel _$UserResponseModelFromJson(Map<String, dynamic> json) =>
       passwordChangedAt: json['passwordChangedAt'] as String?,
       role: json['role'] as String?,
     );
+
+Map<String, dynamic> _$UserResponseModelToJson(UserResponseModel instance) =>
+    <String, dynamic>{
+      '_id': instance.id,
+      'username': instance.userName,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
+      'email': instance.email,
+      'phone': instance.phone,
+      'passwordChangedAt': instance.passwordChangedAt,
+      'createdAt': instance.createdAt,
+      'role': instance.role,
+    };

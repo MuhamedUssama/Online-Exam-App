@@ -14,3 +14,12 @@ ChangePasswordResponseModel _$ChangePasswordResponseModelFromJson(
       stack: json['stack'] as String?,
       token: json['token'] as String?,
     );
+
+Map<String, dynamic> _$ChangePasswordResponseModelToJson(
+        ChangePasswordResponseModel instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+      'code': instance.code,
+      'stack': instance.stack,
+      'token': instance.token,
+    };

@@ -11,13 +11,13 @@ import '../models/response/profile_info_response_model.dart';
 @singleton
 @injectable
 class UserProfileApiManager {
-  ApiConsumer apiConsumer;
+  final ApiConsumer _apiConsumer;
 
   @factoryMethod
-  UserProfileApiManager(this.apiConsumer);
+  UserProfileApiManager(this._apiConsumer);
 
   Future<ProfileInfoResponseModel?> getLoggedUserInfo() async {
-    final json = await apiConsumer.get(EndPoints.getLoggedUserinfo);
+    final json = await _apiConsumer.get(EndPoints.getLoggedUserinfo);
 
     return ProfileInfoResponseModel.fromJson(json);
   }
@@ -37,7 +37,7 @@ class UserProfileApiManager {
       phone: phone,
     );
 
-    final json = await apiConsumer.put(
+    final json = await _apiConsumer.put(
       EndPoints.editProfile,
       body: requestModel.toJson(),
     );
@@ -46,7 +46,7 @@ class UserProfileApiManager {
   }
 
   Future<LogoutResponseModel?> logout() async {
-    final json = await apiConsumer.get(EndPoints.logout);
+    final json = await _apiConsumer.get(EndPoints.logout);
 
     return LogoutResponseModel.fromJson(json);
   }
@@ -62,7 +62,7 @@ class UserProfileApiManager {
       rePassword: rePassword,
     );
 
-    final json = await apiConsumer.patch(
+    final json = await _apiConsumer.patch(
       EndPoints.changePassword,
       body: requestModel.toJson(),
     );
