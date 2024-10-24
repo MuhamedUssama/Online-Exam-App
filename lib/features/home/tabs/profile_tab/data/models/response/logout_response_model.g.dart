@@ -12,11 +12,3 @@ LogoutResponseModel _$LogoutResponseModelFromJson(Map<String, dynamic> json) =>
       message: json['message'] as String?,
       stack: json['stack'] as String?,
     );
-
-Map<String, dynamic> _$LogoutResponseModelToJson(
-        LogoutResponseModel instance) =>
-    <String, dynamic>{
-      'message': instance.message,
-      'code': instance.code,
-      'stack': instance.stack,
-    };

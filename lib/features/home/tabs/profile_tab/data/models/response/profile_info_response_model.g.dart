@@ -16,12 +16,3 @@ ProfileInfoResponseModel _$ProfileInfoResponseModelFromJson(
           ? null
           : UserResponseModel.fromJson(json['user'] as Map<String, dynamic>),
     );
-
-Map<String, dynamic> _$ProfileInfoResponseModelToJson(
-        ProfileInfoResponseModel instance) =>
-    <String, dynamic>{
-      'code': instance.code,
-      'message': instance.message,
-      'stack': instance.stack,
-      'user': instance.user,
-    };
