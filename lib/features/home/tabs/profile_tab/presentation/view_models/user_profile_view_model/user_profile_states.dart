@@ -30,5 +30,3 @@ class LogoutSuccessState extends UserProfileStates {
 
   LogoutSuccessState(this.logoutEntity);
 }
-
-class ChangePasswordState extends UserProfileStates {}
