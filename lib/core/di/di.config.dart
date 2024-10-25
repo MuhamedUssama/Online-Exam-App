@@ -62,6 +62,14 @@ import '../../features/home/tabs/profile_tab/data/repository_impl/user_profile_r
     as _i697;
 import '../../features/home/tabs/profile_tab/domain/repository/user_profile_repository.dart'
     as _i965;
+import '../../features/home/tabs/profile_tab/domain/usecases/change_password_usecase.dart'
+    as _i265;
+import '../../features/home/tabs/profile_tab/domain/usecases/edit_profile_usecase.dart'
+    as _i928;
+import '../../features/home/tabs/profile_tab/domain/usecases/get_logged_user_info_usecase.dart'
+    as _i837;
+import '../../features/home/tabs/profile_tab/domain/usecases/logout_usecase.dart'
+    as _i268;
 import '../cache/shared_preferences.dart' as _i254;
 import '../networking/api_consumer.dart' as _i681;
 import '../networking/dio_consumer.dart' as _i1042;
@@ -109,6 +117,14 @@ extension GetItInjectableX on _i174.GetIt {
         _i697.UserProfileRepositoryImpl(gh<_i959.UserProfileDataSource>()));
     gh.factory<_i539.ForgetPasswordViewModel>(
         () => _i539.ForgetPasswordViewModel(gh<_i995.ForgetPasswordUsecase>()));
+    gh.factory<_i265.ChangePasswordUsecase>(
+        () => _i265.ChangePasswordUsecase(gh<_i965.UserProfileRepository>()));
+    gh.factory<_i928.EditProfileUsecase>(
+        () => _i928.EditProfileUsecase(gh<_i965.UserProfileRepository>()));
+    gh.factory<_i837.GetLoggedUserInfoUsecase>(() =>
+        _i837.GetLoggedUserInfoUsecase(gh<_i965.UserProfileRepository>()));
+    gh.factory<_i268.LogoutUsecase>(
+        () => _i268.LogoutUsecase(gh<_i965.UserProfileRepository>()));
     gh.factory<_i384.LoginUsecase>(
         () => _i384.LoginUsecase(gh<_i619.AuthRepository>()));
     gh.factory<_i934.SignUpUsecase>(
