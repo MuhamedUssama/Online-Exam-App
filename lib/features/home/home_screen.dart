@@ -21,6 +21,9 @@ class HomeScreen extends StatelessWidget {
       bloc: viewModel,
       builder: (context, state) {
         return Scaffold(
+          appBar: AppBar(
+            title: _buildAppBarTitle(viewModel.currentIndex),
+          ),
           body: IndexedStack(
             index: viewModel.currentIndex,
             children: viewModel.tabs,
@@ -29,6 +32,20 @@ class HomeScreen extends StatelessWidget {
         );
       },
     );
+  }
+
+  Widget _buildAppBarTitle(int index) {
+    return index == 0
+        ? Text(AppStrings.surveyText, style: TextStyles.font20BaseBlueMedium)
+        : index == 1
+            ? Text(
+                AppStrings.resultText,
+                style: TextStyles.font20BaseDarkMedium,
+              )
+            : Text(
+                AppStrings.profileText,
+                style: TextStyles.font20BaseDarkMedium,
+              );
   }
 
   Widget _bottomNavigationBarWidget() {

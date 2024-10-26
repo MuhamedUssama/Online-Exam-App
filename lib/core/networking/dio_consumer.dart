@@ -47,8 +47,12 @@ class DioConsumer implements ApiConsumer {
     Options? options,
   }) async {
     try {
-      final response = await client.post(path,
-          queryParameters: queryParameters, data: body, options: options);
+      final response = await client.post(
+        path,
+        queryParameters: queryParameters,
+        data: body,
+        options: options,
+      );
       return jsonDecode(response.data);
     } on DioError catch (error) {
       return _handleDioError(error);
@@ -83,8 +87,33 @@ class DioConsumer implements ApiConsumer {
     Options? options,
   }) async {
     try {
-      final response = await client.put(path,
-          queryParameters: queryParameters, data: body, options: options);
+      final response = await client.put(
+        path,
+        queryParameters: queryParameters,
+        data: body,
+        options: options,
+      );
+      return jsonDecode(response.data);
+    } on DioError catch (error) {
+      _handleDioError(error);
+    }
+  }
+
+  @override
+  Future patch(
+    String path, {
+    Map<String, dynamic>? body,
+    Map<String, dynamic>? queryParameters,
+    Map<String, String>? headers,
+    Options? options,
+  }) async {
+    try {
+      final response = await client.patch(
+        path,
+        queryParameters: queryParameters,
+        data: body,
+        options: options,
+      );
       return jsonDecode(response.data);
     } on DioError catch (error) {
       _handleDioError(error);
