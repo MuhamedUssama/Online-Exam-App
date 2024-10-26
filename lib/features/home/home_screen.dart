@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -37,10 +36,16 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildAppBarTitle(int index) {
     return index == 0
-        ? Text('Survey', style: TextStyles.font20BaseBlueMedium)
+        ? Text(AppStrings.surveyText, style: TextStyles.font20BaseBlueMedium)
         : index == 1
-            ? Text('Results', style: TextStyles.font20BaseDarkMedium)
-            : Text('Profile', style: TextStyles.font20BaseDarkMedium);
+            ? Text(
+                AppStrings.resultText,
+                style: TextStyles.font20BaseDarkMedium,
+              )
+            : Text(
+                AppStrings.profileText,
+                style: TextStyles.font20BaseDarkMedium,
+              );
   }
 
   Widget _bottomNavigationBarWidget() {
