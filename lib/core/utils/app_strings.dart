@@ -76,7 +76,8 @@ class AppStrings {
       "You now have a new password";
 
   static const String exploreText = "Explore";
-  static const String resultText = "Result";
+  static const String surveyText = "Survey";
+  static const String resultText = "Results";
   static const String profileText = "Profile";
 
   static RegExp emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
