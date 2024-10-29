@@ -5,4 +5,5 @@ class RoutesName {
   static const String verifyEmailScreen = '/verifyEmailScreen';
   static const String resetPasswordScreen = '/resetPasswordScreen';
   static const String homeScreen = '/home';
+  static const String changePasswordScreen = '/changePasswordScreen';
 }

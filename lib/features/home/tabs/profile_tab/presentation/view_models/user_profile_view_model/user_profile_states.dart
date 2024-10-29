@@ -26,7 +26,7 @@ class EditProfileSuccessState extends UserProfileStates {
 }
 
 class LogoutSuccessState extends UserProfileStates {
-  LogoutEntity logoutEntity;
+  LogoutEntity? logoutEntity;
 
   LogoutSuccessState(this.logoutEntity);
 }
