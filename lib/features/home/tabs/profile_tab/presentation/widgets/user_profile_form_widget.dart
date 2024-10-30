@@ -12,6 +12,7 @@ import '../../change_user_password_screen.dart';
 import '../view_models/user_profile_view_model/user_profile_screen_actions.dart';
 import '../view_models/user_profile_view_model/user_profile_states.dart';
 import '../view_models/user_profile_view_model/user_profile_view_model.dart';
+import 'profile_tab_error_widget.dart';
 
 class UserProfileFormWidget extends StatelessWidget {
   final UserProfileViewModel viewModel;
@@ -134,8 +135,8 @@ class UserProfileFormWidget extends StatelessWidget {
             ),
           );
         } else if (state is UserProfileGetInfoErrorState) {
-          return Center(
-            child: Text(state.message ?? AppStrings.somethingWentWrong),
+          return ProfileTabErrorWidget(
+            errorMessage: state.message ?? AppStrings.somethingWentWrong,
           );
         } else {
           return const Center(
