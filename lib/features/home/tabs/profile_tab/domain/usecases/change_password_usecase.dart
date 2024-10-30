@@ -11,11 +11,11 @@ class ChangePasswordUsecase {
   @factoryMethod
   ChangePasswordUsecase(this.repository);
 
-  Future<Result<ChangePasswordEntity?>> call(
+  Future<Result<ChangePasswordEntity?>> call({
     String? oldPassword,
     String? newPassword,
     String? rePassword,
-  ) {
+  }) {
     return repository.changePassword(
       newPassword: newPassword,
       oldPassword: oldPassword,

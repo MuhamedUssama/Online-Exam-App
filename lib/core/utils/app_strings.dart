@@ -80,5 +80,12 @@ class AppStrings {
   static const String resultText = "Results";
   static const String profileText = "Profile";
 
+  static const String changeText = 'Change';
+  static const String updateText = 'Update';
+  static const String userProfileEditedSucceessfully =
+      'User profile edited successfully';
+
+  static const String currentPassword = 'Current password';
+
   static RegExp emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
 }

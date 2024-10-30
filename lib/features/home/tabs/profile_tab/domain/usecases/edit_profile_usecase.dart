@@ -11,13 +11,13 @@ class EditProfileUsecase {
   @factoryMethod
   EditProfileUsecase(this.repository);
 
-  Future<Result<UserProfileEntity?>> call(
+  Future<Result<UserProfileEntity?>> call({
     String? userName,
     String? firstName,
     String? lastName,
     String? email,
     String? phone,
-  ) {
+  }) {
     return repository.editProfile(
       email: email,
       firstName: firstName,
