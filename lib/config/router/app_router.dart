@@ -8,7 +8,7 @@ import '../../features/auth/login_and_signup/ui/login/login_screen.dart';
 import '../../features/auth/forget_password/presentation/email_verification_screen.dart';
 import '../../features/auth/forget_password/presentation/forget_password_screen.dart';
 import '../../features/auth/forget_password/presentation/reset_password_screen.dart';
-import '../../features/home/tabs/profile_tab/change_user_password_screen.dart';
+import '../../features/home/tabs/profile_tab/presentation/change_user_password_screen.dart';
 
 class AppRouters {
   static Route onGenerate(RouteSettings settings) {

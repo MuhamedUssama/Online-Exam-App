@@ -4,15 +4,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam_app/core/di/di.dart';
 import 'package:online_exam_app/features/home/home_screen.dart';
 
-import '../../../../config/theme/test_style.dart';
-import '../../../../core/utils/app_dialogs.dart';
-import '../../../../core/utils/app_strings.dart';
-import '../../../../core/utils/validation_utils.dart';
-import '../../../../core/widgets/custom_blue_button.dart';
-import '../../../../core/widgets/custom_form_field.dart';
-import 'presentation/view_models/change_password_view_model.dart/change_password_actions.dart';
-import 'presentation/view_models/change_password_view_model.dart/change_password_states.dart';
-import 'presentation/view_models/change_password_view_model.dart/change_password_view_model.dart';
+import '../../../../../config/theme/test_style.dart';
+import '../../../../../core/utils/app_dialogs.dart';
+import '../../../../../core/utils/app_strings.dart';
+import '../../../../../core/utils/validation_utils.dart';
+import '../../../../../core/widgets/custom_blue_button.dart';
+import '../../../../../core/widgets/custom_form_field.dart';
+import 'view_models/change_password_view_model.dart/change_password_actions.dart';
+import 'view_models/change_password_view_model.dart/change_password_states.dart';
+import 'view_models/change_password_view_model.dart/change_password_view_model.dart';
 
 class ChangeUserPasswordScreen extends StatefulWidget {
   const ChangeUserPasswordScreen({super.key});
