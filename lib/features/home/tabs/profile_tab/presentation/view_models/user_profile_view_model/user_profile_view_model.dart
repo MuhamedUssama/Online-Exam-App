@@ -25,12 +25,12 @@ class UserProfileViewModel extends Cubit<UserProfileStates> {
     this._logoutUsecase,
   ) : super(UserProfileInitialState());
 
-  var formKey = GlobalKey<FormState>();
   TextEditingController userNameController = TextEditingController();
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController passwordController =
+      TextEditingController(text: '123456');
   TextEditingController phoneController = TextEditingController();
 
   void doIntent(UserProfileScreenActions action) {
@@ -50,7 +50,7 @@ class UserProfileViewModel extends Cubit<UserProfileStates> {
   }
 
   Future<void> _getUserInfo() async {
-    emit(UserProfileLoadingState(AppStrings.loadingText));
+    emit(UserProfileGetInfoLoadingState(AppStrings.loadingText));
 
     Result<UserProfileEntity?> result = await _getLoggedUserInfoUsecase();
 
@@ -68,7 +68,7 @@ class UserProfileViewModel extends Cubit<UserProfileStates> {
 
       case Fail<UserProfileEntity?>():
         {
-          emit(UserProfileErrorState(
+          emit(UserProfileGetInfoErrorState(
             result.exception?.message ?? AppStrings.somethingWentWrong,
           ));
           break;
@@ -77,36 +77,34 @@ class UserProfileViewModel extends Cubit<UserProfileStates> {
   }
 
   Future<void> _chnageUserInfo() async {
-    if (formKey.currentState?.validate() == true) {
-      emit(UserProfileLoadingState(AppStrings.loadingText));
+    emit(UserProfileUpdateInfoLoadingState(AppStrings.loadingText));
 
-      Result<UserProfileEntity?> result = await _editProfileUsecase(
-        userName: userNameController.text,
-        email: emailController.text,
-        firstName: firstNameController.text,
-        lastName: lastNameController.text,
-        phone: phoneController.text,
-      );
+    Result<UserProfileEntity?> result = await _editProfileUsecase(
+      userName: userNameController.text,
+      email: emailController.text,
+      firstName: firstNameController.text,
+      lastName: lastNameController.text,
+      phone: phoneController.text,
+    );
 
-      switch (result) {
-        case Success<UserProfileEntity?>():
-          {
-            emit(EditProfileSuccessState(result.data));
-            break;
-          }
-        case Fail<UserProfileEntity?>():
-          {
-            emit(UserProfileErrorState(
-              result.exception?.message ?? AppStrings.somethingWentWrong,
-            ));
-            break;
-          }
-      }
+    switch (result) {
+      case Success<UserProfileEntity?>():
+        {
+          emit(EditProfileSuccessState(result.data));
+          break;
+        }
+      case Fail<UserProfileEntity?>():
+        {
+          emit(UserProfileUpdateInfoErrorState(
+            result.exception?.message ?? AppStrings.somethingWentWrong,
+          ));
+          break;
+        }
     }
   }
 
   Future<void> _logout() async {
-    emit(UserProfileLoadingState(AppStrings.loadingText));
+    emit(UserProfileLogoutLoadingState(AppStrings.loadingText));
 
     Result<LogoutEntity?> result = await _logoutUsecase();
 
@@ -118,7 +116,7 @@ class UserProfileViewModel extends Cubit<UserProfileStates> {
         }
       case Fail<LogoutEntity?>():
         {
-          emit(UserProfileErrorState(
+          emit(UserProfileLogoutErrorState(
             result.exception?.message ?? AppStrings.somethingWentWrong,
           ));
           break;

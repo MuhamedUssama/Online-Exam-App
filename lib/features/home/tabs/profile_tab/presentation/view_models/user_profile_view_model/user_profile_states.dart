@@ -5,14 +5,34 @@ sealed class UserProfileStates {}
 
 class UserProfileInitialState extends UserProfileStates {}
 
-class UserProfileLoadingState extends UserProfileStates {
+class UserProfileGetInfoLoadingState extends UserProfileStates {
   String? message;
-  UserProfileLoadingState(this.message);
+  UserProfileGetInfoLoadingState(this.message);
 }
 
-class UserProfileErrorState extends UserProfileStates {
+class UserProfileUpdateInfoLoadingState extends UserProfileStates {
   String? message;
-  UserProfileErrorState(this.message);
+  UserProfileUpdateInfoLoadingState(this.message);
+}
+
+class UserProfileLogoutLoadingState extends UserProfileStates {
+  String? message;
+  UserProfileLogoutLoadingState(this.message);
+}
+
+class UserProfileGetInfoErrorState extends UserProfileStates {
+  String? message;
+  UserProfileGetInfoErrorState(this.message);
+}
+
+class UserProfileUpdateInfoErrorState extends UserProfileStates {
+  String? message;
+  UserProfileUpdateInfoErrorState(this.message);
+}
+
+class UserProfileLogoutErrorState extends UserProfileStates {
+  String? message;
+  UserProfileLogoutErrorState(this.message);
 }
 
 class GetLoggedUserDataSuccessState extends UserProfileStates {
