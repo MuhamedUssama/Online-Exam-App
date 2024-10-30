@@ -8,6 +8,7 @@ import '../../../../../../core/utils/app_dialogs.dart';
 import '../../../../../../core/utils/app_strings.dart';
 import '../../../../../../core/widgets/custom_blue_button.dart';
 import '../../../../../../core/widgets/custom_form_field.dart';
+import '../../change_user_password_screen.dart';
 import '../view_models/user_profile_view_model/user_profile_screen_actions.dart';
 import '../view_models/user_profile_view_model/user_profile_states.dart';
 import '../view_models/user_profile_view_model/user_profile_view_model.dart';
@@ -95,7 +96,14 @@ class UserProfileFormWidget extends StatelessWidget {
                 style: TextStyles.font16BaseBlackRegular,
                 secureText: true,
                 suffixIcon: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ChangeUserPasswordScreen(),
+                      ),
+                    );
+                  },
                   child: Text(
                     AppStrings.changeText,
                     style: TextStyles.text12BaseBlueSemiBold,

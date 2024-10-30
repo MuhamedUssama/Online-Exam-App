@@ -70,6 +70,8 @@ import '../../features/home/tabs/profile_tab/domain/usecases/get_logged_user_inf
     as _i837;
 import '../../features/home/tabs/profile_tab/domain/usecases/logout_usecase.dart'
     as _i268;
+import '../../features/home/tabs/profile_tab/presentation/view_models/change_password_view_model.dart/change_password_view_model.dart'
+    as _i86;
 import '../../features/home/tabs/profile_tab/presentation/view_models/user_profile_view_model/user_profile_view_model.dart'
     as _i422;
 import '../cache/shared_preferences.dart' as _i254;
@@ -136,6 +138,8 @@ extension GetItInjectableX on _i174.GetIt {
               gh<_i833.VerifyEmailUsecase>(),
               gh<_i995.ForgetPasswordUsecase>(),
             ));
+    gh.factory<_i86.ChangePasswordViewModel>(
+        () => _i86.ChangePasswordViewModel(gh<_i265.ChangePasswordUsecase>()));
     gh.factory<_i788.LoginViewModel>(
         () => _i788.LoginViewModel(gh<_i384.LoginUsecase>()));
     gh.factory<_i422.UserProfileViewModel>(() => _i422.UserProfileViewModel(
