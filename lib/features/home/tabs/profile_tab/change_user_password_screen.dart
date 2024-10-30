@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam_app/core/di/di.dart';
+import 'package:online_exam_app/features/home/home_screen.dart';
 
 import '../../../../config/theme/test_style.dart';
 import '../../../../core/utils/app_dialogs.dart';
@@ -74,6 +75,11 @@ class _ChangeUserPasswordScreenState extends State<ChangeUserPasswordScreen> {
                         AppStrings.userProfileEditedSucceessfully,
                     context: context,
                     posActionTitle: AppStrings.ok,
+                    posAction: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                      );
+                    },
                   );
                 }
               },
