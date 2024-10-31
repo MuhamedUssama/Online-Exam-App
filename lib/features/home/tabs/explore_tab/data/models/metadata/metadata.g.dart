@@ -12,8 +12,3 @@ Metadata _$MetadataFromJson(Map<String, dynamic> json) => Metadata(
       limit: json['limit'] as num?,
     );
 
-Map<String, dynamic> _$MetadataToJson(Metadata instance) => <String, dynamic>{
-      'currentPage': instance.currentPage,
-      'numberOfPages': instance.numberOfPages,
-      'limit': instance.limit,
-    };
