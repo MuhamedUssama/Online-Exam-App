@@ -77,6 +77,8 @@ class AppStrings {
 
   static const String exploreText = "Explore";
   static const String surveyText = "Survey";
+  static const String languageText = "Languages";
+  static const String startText = "Start";
   static const String resultText = "Results";
   static const String profileText = "Profile";
 

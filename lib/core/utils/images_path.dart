@@ -10,3 +10,8 @@ class IconsPath {
   static const String profileIcon = '${_iconsPath}profile_icon.png';
   static const String cameraIcon = '${_iconsPath}camera_icon.png';
 }
+
+class SvgPath {
+  static const String _svgPath = 'assets/svg/';
+  static const String timeIcon = '${_svgPath}time.svg';
+}
