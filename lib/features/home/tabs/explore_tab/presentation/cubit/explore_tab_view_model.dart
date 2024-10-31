@@ -1,12 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_exam_app/core/cache/shared_preferences.dart';
-import 'package:online_exam_app/core/constants/app_constants.dart';
 import 'package:online_exam_app/core/results/result.dart';
 import 'package:online_exam_app/features/home/tabs/explore_tab/domain/entities/subject_response_entity.dart';
 import 'package:online_exam_app/features/home/tabs/explore_tab/domain/usecases/subject_usecase.dart';
 import 'package:online_exam_app/features/home/tabs/explore_tab/presentation/cubit/explore_tab_actions.dart';
 import 'package:online_exam_app/features/home/tabs/explore_tab/presentation/cubit/explore_tab_states.dart';
+
 
 @injectable
 class ExploreTabViewModel extends Cubit<ExploreTabStates> {
@@ -24,11 +23,11 @@ class ExploreTabViewModel extends Cubit<ExploreTabStates> {
     emit(ExploreTabLoadingState());
     final result = await usecase.invoke();
     switch (result) {
-      case Success<SubjectResponseEntity>():
+      case Success<SubjectResponseEntity?>():
         {
           emit(ExploreTabSuccessState(result.data));
         }
-      case Fail<SubjectResponseEntity>():
+      case Fail<SubjectResponseEntity?>():
         emit(ExploreTabErrorState(result.exception?.message ?? ""));
     }
   }

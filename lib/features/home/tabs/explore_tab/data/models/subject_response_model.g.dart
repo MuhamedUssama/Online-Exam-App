@@ -9,17 +9,12 @@ part of 'subject_response_model.dart';
 SubjectResponseModel _$SubjectResponseModelFromJson(
         Map<String, dynamic> json) =>
     SubjectResponseModel(
-      icon: json['icon'] as String?,
-      name: json['name'] as String?,
-      id: json['_id'] as String?,
+      subjects: (json['subjects'] as List<dynamic>?)
+          ?.map((e) => SubjectsModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
       message: json['message'] as String?,
+      metadata: json['metadata'] == null
+          ? null
+          : Metadata.fromJson(json['metadata'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$SubjectResponseModelToJson(
-        SubjectResponseModel instance) =>
-    <String, dynamic>{
-      '_id': instance.id,
-      'name': instance.name,
-      'icon': instance.icon,
-      'message': instance.message,
-    };

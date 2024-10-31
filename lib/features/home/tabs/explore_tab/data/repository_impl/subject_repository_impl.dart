@@ -4,7 +4,6 @@ import 'package:online_exam_app/core/results/result.dart';
 import 'package:online_exam_app/features/home/tabs/explore_tab/data/data_sources/subject_data_source.dart';
 import 'package:online_exam_app/features/home/tabs/explore_tab/domain/entities/subject_response_entity.dart';
 import 'package:online_exam_app/features/home/tabs/explore_tab/domain/repository/subject_repository.dart';
-
 import '../../../../../../core/errors/exceptions.dart';
 
 @Injectable(as: SubjectRepository)
@@ -20,7 +19,7 @@ class SubjectRepositoryImpl extends SubjectRepository {
   }
 
   @override
-  Future<Result<SubjectResponseEntity>> getSubjects() async {
+  Future<Result<SubjectResponseEntity?>> getSubjects() async {
     if (await _checkInternetConnection()) {
       return dataSource.getSubjects();
     }

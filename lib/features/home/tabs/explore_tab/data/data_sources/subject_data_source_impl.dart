@@ -14,7 +14,7 @@ class SubjectDataSourceImpl extends SubjectDataSource {
   SubjectDataSourceImpl(this.apiManger);
 
   @override
-  Future<Result<SubjectResponseEntity>> getSubjects() async {
+  Future<Result<SubjectResponseEntity?>> getSubjects() async {
     final result = await apiManger.getSubjects();
     if (result.message == 'success') {
       return Success(result.toSubjectResponseEntity());

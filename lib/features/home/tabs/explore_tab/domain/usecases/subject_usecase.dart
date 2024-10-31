@@ -8,7 +8,7 @@ class SubjectUsecase {
   SubjectRepository repository;
   @factoryMethod
   SubjectUsecase(this.repository);
-  Future<Result<SubjectResponseEntity>> invoke() async {
+  Future<Result<SubjectResponseEntity?>> invoke() async {
     final response = await repository.getSubjects();
     return response;
   }

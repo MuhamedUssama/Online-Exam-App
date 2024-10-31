@@ -36,7 +36,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildAppBarTitle(int index) {
     return index == 0
-        ? Text(AppStrings.surveyText, style: TextStyles.font16BaseBlueRegular)
+        ? Text(AppStrings.surveyText, style: TextStyles.font20BaseBlueMedium)
         : index == 1
             ? Text(
                 AppStrings.resultText,
