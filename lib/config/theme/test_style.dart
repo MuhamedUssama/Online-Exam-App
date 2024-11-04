@@ -48,6 +48,12 @@ class TextStyles {
     fontSize: 20.sp,
     fontWeight: FontWeightHelper.medium,
   );
+  static TextStyle font20BaseBlueMedium = TextStyle(
+    color: ColorsManager.baseBlue,
+    fontSize: 20.sp,
+    fontWeight: FontWeightHelper.medium,
+  );
+
 
   static TextStyle font20BaseBlueMedium = TextStyle(
     color: ColorsManager.baseBlue,

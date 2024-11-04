@@ -3,7 +3,6 @@ class EndPoints {
 
   static const String loginUrl = "auth/signin";
   static const String signUpUrl = "auth/signup";
-
   static const String forgetPassword = "auth/forgotPassword";
   static const String verifyResetCode = "auth/verifyResetCode";
   static const String resetPassword = "auth/resetPassword";
@@ -12,4 +11,5 @@ class EndPoints {
   static const String editProfile = 'auth/editProfile';
   static const String logout = 'auth/logout';
   static const String changePassword = 'auth/changePassword';
+  static const String subjectUrl = "subjects";
 }

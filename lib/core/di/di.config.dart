@@ -52,6 +52,20 @@ import '../../features/auth/login_and_signup/ui/login/cubit/login_view_model.dar
 import '../../features/auth/login_and_signup/ui/signUp/cubit/sign_up_view_model.dart'
     as _i479;
 import '../../features/home/home_screen_view_model.dart' as _i296;
+import '../../features/home/tabs/explore_tab/data/api/subject_api_manger.dart'
+    as _i341;
+import '../../features/home/tabs/explore_tab/data/data_sources/subject_data_source.dart'
+    as _i303;
+import '../../features/home/tabs/explore_tab/data/data_sources/subject_data_source_impl.dart'
+    as _i877;
+import '../../features/home/tabs/explore_tab/data/repository_impl/subject_repository_impl.dart'
+    as _i782;
+import '../../features/home/tabs/explore_tab/domain/repository/subject_repository.dart'
+    as _i424;
+import '../../features/home/tabs/explore_tab/domain/usecases/subject_usecase.dart'
+    as _i997;
+import '../../features/home/tabs/explore_tab/presentation/cubit/explore_tab_view_model.dart'
+    as _i228;
 import '../../features/home/tabs/profile_tab/data/api/user_profile_api_manager.dart'
     as _i922;
 import '../../features/home/tabs/profile_tab/data/data_sourse/user_profile_data_source.dart'
@@ -103,6 +117,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i503.ForgetPasswordRepository>(() =>
         _i633.ForgetPasswordRepositoryImpl(
             gh<_i659.ForgetPasswordDataSource>()));
+    gh.singleton<_i341.SubjectApiManger>(
+        () => _i341.SubjectApiManger(gh<_i681.ApiConsumer>()));
+    gh.factory<_i303.SubjectDataSource>(
+        () => _i877.SubjectDataSourceImpl(gh<_i341.SubjectApiManger>()));
     gh.singleton<_i922.UserProfileApiManager>(
         () => _i922.UserProfileApiManager(gh<_i681.ApiConsumer>()));
     gh.factory<_i959.UserProfileDataSource>(() =>
@@ -119,6 +137,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i505.AuthRepositoryImpl(gh<_i98.AuthDataSource>()));
     gh.factory<_i965.UserProfileRepository>(() =>
         _i697.UserProfileRepositoryImpl(gh<_i959.UserProfileDataSource>()));
+    gh.factory<_i424.SubjectRepository>(
+        () => _i782.SubjectRepositoryImpl(gh<_i303.SubjectDataSource>()));
     gh.factory<_i539.ForgetPasswordViewModel>(
         () => _i539.ForgetPasswordViewModel(gh<_i995.ForgetPasswordUsecase>()));
     gh.factory<_i265.ChangePasswordUsecase>(
@@ -129,6 +149,8 @@ extension GetItInjectableX on _i174.GetIt {
         _i837.GetLoggedUserInfoUsecase(gh<_i965.UserProfileRepository>()));
     gh.factory<_i268.LogoutUsecase>(
         () => _i268.LogoutUsecase(gh<_i965.UserProfileRepository>()));
+    gh.factory<_i997.SubjectUsecase>(
+        () => _i997.SubjectUsecase(gh<_i424.SubjectRepository>()));
     gh.factory<_i384.LoginUsecase>(
         () => _i384.LoginUsecase(gh<_i619.AuthRepository>()));
     gh.factory<_i934.SignUpUsecase>(
@@ -151,6 +173,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1005.ResetPasswordViewModel(gh<_i510.ResetPasswordUsecase>()));
     gh.factory<_i479.SignUpViewModel>(
         () => _i479.SignUpViewModel(gh<_i934.SignUpUsecase>()));
+    gh.factory<_i228.ExploreTabViewModel>(
+        () => _i228.ExploreTabViewModel(gh<_i997.SubjectUsecase>()));
     return this;
   }
 }
