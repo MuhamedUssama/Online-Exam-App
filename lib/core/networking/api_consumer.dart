@@ -31,4 +31,12 @@ abstract class ApiConsumer {
     Map<String, String>? headers,
     Options? options,
   });
+
+  Future<dynamic> patch(
+    String path, {
+    Map<String, dynamic>? body,
+    Map<String, dynamic>? queryParameters,
+    Map<String, String>? headers,
+    Options? options,
+  });
 }

@@ -55,6 +55,12 @@ class TextStyles {
   );
 
 
+  static TextStyle font20BaseBlueMedium = TextStyle(
+    color: ColorsManager.baseBlue,
+    fontSize: 20.sp,
+    fontWeight: FontWeightHelper.medium,
+  );
+
   static TextStyle font14PlaceHolderRegular = TextStyle(
     color: ColorsManager.placeHolder,
     fontSize: 14.sp,

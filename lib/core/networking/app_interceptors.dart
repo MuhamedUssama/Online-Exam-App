@@ -7,10 +7,10 @@ import 'api_constants.dart';
 
 class AppInterceptors extends Interceptor {
   @override
-  onRequest(
+  void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
     String? token =
-    await SharedPreferencesHelper.getSecuredString(key: AppConstants.token);
+        await SharedPreferencesHelper.getSecuredString(key: AppConstants.token);
     debugPrint('REQUEST[${options.method}] => PATH: ${options.path}');
     options.headers[ApiConstants.contentType] = ApiConstants.applicationJson;
     options.headers[AppConstants.token] = token;

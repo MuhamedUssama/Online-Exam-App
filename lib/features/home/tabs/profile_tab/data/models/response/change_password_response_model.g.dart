@@ -1,16 +1,16 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'auth_response_model.dart';
+part of 'change_password_response_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-AuthResponseModel _$AuthResponseModelFromJson(Map<String, dynamic> json) =>
-    AuthResponseModel(
+ChangePasswordResponseModel _$ChangePasswordResponseModelFromJson(
+        Map<String, dynamic> json) =>
+    ChangePasswordResponseModel(
+      code: (json['code'] as num?)?.toInt(),
       message: json['message'] as String?,
+      stack: json['stack'] as String?,
       token: json['token'] as String?,
-      user: json['user'] == null
-          ? null
-          : UserResponseModel.fromJson(json['user'] as Map<String, dynamic>),
     );

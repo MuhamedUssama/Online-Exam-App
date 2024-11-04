@@ -66,6 +66,28 @@ import '../../features/home/tabs/explore_tab/domain/usecases/subject_usecase.dar
     as _i997;
 import '../../features/home/tabs/explore_tab/presentation/cubit/explore_tab_view_model.dart'
     as _i228;
+import '../../features/home/tabs/profile_tab/data/api/user_profile_api_manager.dart'
+    as _i922;
+import '../../features/home/tabs/profile_tab/data/data_sourse/user_profile_data_source.dart'
+    as _i959;
+import '../../features/home/tabs/profile_tab/data/data_sourse/user_profile_data_sourse_impl.dart'
+    as _i995;
+import '../../features/home/tabs/profile_tab/data/repository_impl/user_profile_repository_impl.dart'
+    as _i697;
+import '../../features/home/tabs/profile_tab/domain/repository/user_profile_repository.dart'
+    as _i965;
+import '../../features/home/tabs/profile_tab/domain/usecases/change_password_usecase.dart'
+    as _i265;
+import '../../features/home/tabs/profile_tab/domain/usecases/edit_profile_usecase.dart'
+    as _i928;
+import '../../features/home/tabs/profile_tab/domain/usecases/get_logged_user_info_usecase.dart'
+    as _i837;
+import '../../features/home/tabs/profile_tab/domain/usecases/logout_usecase.dart'
+    as _i268;
+import '../../features/home/tabs/profile_tab/presentation/view_models/change_password_view_model.dart/change_password_view_model.dart'
+    as _i86;
+import '../../features/home/tabs/profile_tab/presentation/view_models/user_profile_view_model/user_profile_view_model.dart'
+    as _i422;
 import '../cache/shared_preferences.dart' as _i254;
 import '../networking/api_consumer.dart' as _i681;
 import '../networking/dio_consumer.dart' as _i1042;
@@ -99,6 +121,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i341.SubjectApiManger(gh<_i681.ApiConsumer>()));
     gh.factory<_i303.SubjectDataSource>(
         () => _i877.SubjectDataSourceImpl(gh<_i341.SubjectApiManger>()));
+    gh.singleton<_i922.UserProfileApiManager>(
+        () => _i922.UserProfileApiManager(gh<_i681.ApiConsumer>()));
+    gh.factory<_i959.UserProfileDataSource>(() =>
+        _i995.UserProfileDataSourseImpl(gh<_i922.UserProfileApiManager>()));
     gh.factory<_i98.AuthDataSource>(
         () => _i385.LoginDataSourceImpl(gh<_i836.ApiManger>()));
     gh.factory<_i995.ForgetPasswordUsecase>(() =>
@@ -109,10 +135,20 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i833.VerifyEmailUsecase(gh<_i503.ForgetPasswordRepository>()));
     gh.factory<_i619.AuthRepository>(
         () => _i505.AuthRepositoryImpl(gh<_i98.AuthDataSource>()));
+    gh.factory<_i965.UserProfileRepository>(() =>
+        _i697.UserProfileRepositoryImpl(gh<_i959.UserProfileDataSource>()));
     gh.factory<_i424.SubjectRepository>(
         () => _i782.SubjectRepositoryImpl(gh<_i303.SubjectDataSource>()));
     gh.factory<_i539.ForgetPasswordViewModel>(
         () => _i539.ForgetPasswordViewModel(gh<_i995.ForgetPasswordUsecase>()));
+    gh.factory<_i265.ChangePasswordUsecase>(
+        () => _i265.ChangePasswordUsecase(gh<_i965.UserProfileRepository>()));
+    gh.factory<_i928.EditProfileUsecase>(
+        () => _i928.EditProfileUsecase(gh<_i965.UserProfileRepository>()));
+    gh.factory<_i837.GetLoggedUserInfoUsecase>(() =>
+        _i837.GetLoggedUserInfoUsecase(gh<_i965.UserProfileRepository>()));
+    gh.factory<_i268.LogoutUsecase>(
+        () => _i268.LogoutUsecase(gh<_i965.UserProfileRepository>()));
     gh.factory<_i997.SubjectUsecase>(
         () => _i997.SubjectUsecase(gh<_i424.SubjectRepository>()));
     gh.factory<_i384.LoginUsecase>(
@@ -124,8 +160,15 @@ extension GetItInjectableX on _i174.GetIt {
               gh<_i833.VerifyEmailUsecase>(),
               gh<_i995.ForgetPasswordUsecase>(),
             ));
+    gh.factory<_i86.ChangePasswordViewModel>(
+        () => _i86.ChangePasswordViewModel(gh<_i265.ChangePasswordUsecase>()));
     gh.factory<_i788.LoginViewModel>(
         () => _i788.LoginViewModel(gh<_i384.LoginUsecase>()));
+    gh.factory<_i422.UserProfileViewModel>(() => _i422.UserProfileViewModel(
+          gh<_i837.GetLoggedUserInfoUsecase>(),
+          gh<_i928.EditProfileUsecase>(),
+          gh<_i268.LogoutUsecase>(),
+        ));
     gh.factory<_i1005.ResetPasswordViewModel>(
         () => _i1005.ResetPasswordViewModel(gh<_i510.ResetPasswordUsecase>()));
     gh.factory<_i479.SignUpViewModel>(
