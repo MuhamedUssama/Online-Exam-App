@@ -24,29 +24,61 @@ class _ExploreTabState extends State<ExploreTab> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ExploreTabViewModel, ExploreTabStates>(
-      bloc: viewModel,
-      builder: (context, state) {
-        if (state is ExploreTabLoadingState) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (state is ExploreTabErrorState) {
-          return Center(
-              child: Text(
-            state.errorMessage ?? "",
-            style: TextStyles.font16BaseBlackRegular,
-          ));
-        } else if (state is ExploreTabSuccessState) {
-          return ListView.separated(
-              itemBuilder: (context, index) {
-                return ExploreTabCardWidget(state.entity!.subjects![index]);
-              },
-              separatorBuilder: (context, index) =>  SizedBox(
-                    height: 16.h,
-                  ),
-              itemCount: state.entity!.subjects!.length);
-        }
-        return const Center(child: CircularProgressIndicator());
-      },
+    return Column(
+      children: [
+        const Padding(
+          padding:  EdgeInsets.all(8.0),
+          child:  TextField(
+            decoration: InputDecoration(
+              hintText: 'Search',
+              prefixIcon: Icon(Icons.search),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                borderSide: BorderSide(color: Colors.grey),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                borderSide: BorderSide(color: Colors.grey),
+              ),
+              contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
+            ),
+          ),
+        ),
+         Row(
+          children: [
+             Padding(
+               padding:const EdgeInsets.all(8.0),
+               child: Text('Browse by subject',style:TextStyles.font18BaseDarkMedium  ,),
+             ),
+          ],
+        ),
+        Expanded(
+          child: BlocBuilder<ExploreTabViewModel, ExploreTabStates>(
+            bloc: viewModel,
+            builder: (context, state) {
+              if (state is ExploreTabLoadingState) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (state is ExploreTabErrorState) {
+                return Center(
+                    child: Text(
+                  state.errorMessage ?? "",
+                  style: TextStyles.font16BaseBlackRegular,
+                ));
+              } else if (state is ExploreTabSuccessState) {
+                return ListView.separated(
+                    itemBuilder: (context, index) {
+                      return ExploreTabCardWidget(state.entity!.subjects![index]);
+                    },
+                    separatorBuilder: (context, index) =>  SizedBox(
+                          height: 16.h,
+                        ),
+                    itemCount: state.entity!.subjects!.length);
+              }
+              return const Center(child: CircularProgressIndicator());
+            },
+          ),
+        ),
+      ],
     );
   }
 }

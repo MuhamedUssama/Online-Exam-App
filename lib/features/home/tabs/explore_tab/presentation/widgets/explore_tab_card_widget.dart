@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:online_exam_app/core/cache/shared_preferences.dart';
 import 'package:online_exam_app/features/home/tabs/explore_tab/domain/entities/subjects_entity.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../config/theme/test_style.dart';
+import '../../../../../exams/presentation/exams_screen.dart';
 
 class ExploreTabCardWidget extends StatelessWidget {
   final SubjectsEntity subject;
@@ -17,7 +19,12 @@ class ExploreTabCardWidget extends StatelessWidget {
             margin: const EdgeInsets.symmetric(horizontal: 14),
             height: 80.h,
             child: InkWell(
-              onTap: (){},
+              onTap: (){
+                SharedPreferencesHelper.saveData(key: 'subject', value: subject.id);
+                Navigator.push(context,MaterialPageRoute(
+                  builder: (context) =>  ExamsScreen(subject: subject,),
+                ),);
+              },
               child: Card(
                 child: Row(
                   children: [

@@ -13,9 +13,3 @@ ResetPasswordResponseModel _$ResetPasswordResponseModelFromJson(
       token: json['token'] as String?,
     );
 
-Map<String, dynamic> _$ResetPasswordResponseModelToJson(
-        ResetPasswordResponseModel instance) =>
-    <String, dynamic>{
-      'message': instance.message,
-      'token': instance.token,
-    };

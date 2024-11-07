@@ -12,3 +12,4 @@ LogoutResponseModel _$LogoutResponseModelFromJson(Map<String, dynamic> json) =>
       message: json['message'] as String?,
       stack: json['stack'] as String?,
     );
+

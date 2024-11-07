@@ -22,6 +22,7 @@ class HomeScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             title: _buildAppBarTitle(viewModel.currentIndex),
           ),
           body: IndexedStack(

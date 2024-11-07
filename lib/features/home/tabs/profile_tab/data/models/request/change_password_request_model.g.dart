@@ -6,6 +6,8 @@ part of 'change_password_request_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+
+
 Map<String, dynamic> _$ChangePasswordRequestModelToJson(
         ChangePasswordRequestModel instance) =>
     <String, dynamic>{

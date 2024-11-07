@@ -9,4 +9,5 @@ class IconsPath {
   static const String resultIcon = '${_iconsPath}result_icon.png';
   static const String profileIcon = '${_iconsPath}profile_icon.png';
   static const String cameraIcon = '${_iconsPath}camera_icon.png';
+  static const String examIcon = '${_iconsPath}exam.png';
 }

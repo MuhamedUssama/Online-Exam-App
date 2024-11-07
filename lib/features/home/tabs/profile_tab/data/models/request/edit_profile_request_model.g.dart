@@ -6,6 +6,8 @@ part of 'edit_profile_request_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+
+
 Map<String, dynamic> _$EditProfileRequestModelToJson(
         EditProfileRequestModel instance) =>
     <String, dynamic>{

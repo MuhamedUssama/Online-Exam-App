@@ -51,6 +51,15 @@ import '../../features/auth/login_and_signup/ui/login/cubit/login_view_model.dar
     as _i788;
 import '../../features/auth/login_and_signup/ui/signUp/cubit/sign_up_view_model.dart'
     as _i479;
+import '../../features/exams/data/api/exams_api_manger.dart' as _i423;
+import '../../features/exams/data/data_source/exams_data_source.dart' as _i867;
+import '../../features/exams/data/data_source/exams_data_source_impl.dart'
+    as _i703;
+import '../../features/exams/data/repository_impl/exams_repository_impl.dart'
+    as _i119;
+import '../../features/exams/domain/repository/exams_repository.dart' as _i346;
+import '../../features/exams/domain/usecase/exams_usecase.dart' as _i156;
+import '../../features/exams/presentation/cubit/exams_view_model.dart' as _i725;
 import '../../features/home/home_screen_view_model.dart' as _i296;
 import '../../features/home/tabs/explore_tab/data/api/subject_api_manger.dart'
     as _i341;
@@ -88,6 +97,18 @@ import '../../features/home/tabs/profile_tab/presentation/view_models/change_pas
     as _i86;
 import '../../features/home/tabs/profile_tab/presentation/view_models/user_profile_view_model/user_profile_view_model.dart'
     as _i422;
+import '../../features/question/data/api/questions_api_manger.dart' as _i265;
+import '../../features/question/data/data_source/questions_data_source.dart'
+    as _i662;
+import '../../features/question/data/data_source/questions_data_source_impl.dart'
+    as _i328;
+import '../../features/question/data/repository_impl/questions_repository_impl.dart'
+    as _i608;
+import '../../features/question/domain/repository/questions_repository.dart'
+    as _i812;
+import '../../features/question/domain/usecase/questions_usecase.dart' as _i181;
+import '../../features/question/presentation/cubit/questions_view_model.dart'
+    as _i213;
 import '../cache/shared_preferences.dart' as _i254;
 import '../networking/api_consumer.dart' as _i681;
 import '../networking/dio_consumer.dart' as _i1042;
@@ -117,16 +138,28 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i503.ForgetPasswordRepository>(() =>
         _i633.ForgetPasswordRepositoryImpl(
             gh<_i659.ForgetPasswordDataSource>()));
-    gh.singleton<_i341.SubjectApiManger>(
-        () => _i341.SubjectApiManger(gh<_i681.ApiConsumer>()));
-    gh.factory<_i303.SubjectDataSource>(
-        () => _i877.SubjectDataSourceImpl(gh<_i341.SubjectApiManger>()));
     gh.singleton<_i922.UserProfileApiManager>(
         () => _i922.UserProfileApiManager(gh<_i681.ApiConsumer>()));
+    gh.singleton<_i341.SubjectApiManger>(
+        () => _i341.SubjectApiManger(gh<_i681.ApiConsumer>()));
+    gh.singleton<_i423.ExamsApiManger>(
+        () => _i423.ExamsApiManger(gh<_i681.ApiConsumer>()));
+    gh.singleton<_i265.QuestionsApiManger>(
+        () => _i265.QuestionsApiManger(gh<_i681.ApiConsumer>()));
+    gh.factory<_i867.ExamsDataSource>(
+        () => _i703.ExamsDataSourceImpl(gh<_i423.ExamsApiManger>()));
     gh.factory<_i959.UserProfileDataSource>(() =>
         _i995.UserProfileDataSourseImpl(gh<_i922.UserProfileApiManager>()));
+    gh.factory<_i346.ExamsRepository>(
+        () => _i119.ExamsRepositoryImpl(gh<_i867.ExamsDataSource>()));
+    gh.factory<_i303.SubjectDataSource>(
+        () => _i877.SubjectDataSourceImpl(gh<_i341.SubjectApiManger>()));
+    gh.factory<_i156.ExamsUsecase>(
+        () => _i156.ExamsUsecase(gh<_i346.ExamsRepository>()));
     gh.factory<_i98.AuthDataSource>(
         () => _i385.LoginDataSourceImpl(gh<_i836.ApiManger>()));
+    gh.factory<_i725.ExamsViewModel>(
+        () => _i725.ExamsViewModel(gh<_i156.ExamsUsecase>()));
     gh.factory<_i995.ForgetPasswordUsecase>(() =>
         _i995.ForgetPasswordUsecase(gh<_i503.ForgetPasswordRepository>()));
     gh.factory<_i510.ResetPasswordUsecase>(
@@ -135,10 +168,16 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i833.VerifyEmailUsecase(gh<_i503.ForgetPasswordRepository>()));
     gh.factory<_i619.AuthRepository>(
         () => _i505.AuthRepositoryImpl(gh<_i98.AuthDataSource>()));
+    gh.factory<_i662.QuestionsDataSource>(
+        () => _i328.QuestionsDataSourceImpl(gh<_i265.QuestionsApiManger>()));
     gh.factory<_i965.UserProfileRepository>(() =>
         _i697.UserProfileRepositoryImpl(gh<_i959.UserProfileDataSource>()));
     gh.factory<_i424.SubjectRepository>(
         () => _i782.SubjectRepositoryImpl(gh<_i303.SubjectDataSource>()));
+    gh.factory<_i812.QuestionsRepository>(
+        () => _i608.QuestionsRepositoryImpl(gh<_i662.QuestionsDataSource>()));
+    gh.factory<_i181.QuestionsUsecase>(
+        () => _i181.QuestionsUsecase(gh<_i812.QuestionsRepository>()));
     gh.factory<_i539.ForgetPasswordViewModel>(
         () => _i539.ForgetPasswordViewModel(gh<_i995.ForgetPasswordUsecase>()));
     gh.factory<_i265.ChangePasswordUsecase>(
@@ -173,6 +212,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1005.ResetPasswordViewModel(gh<_i510.ResetPasswordUsecase>()));
     gh.factory<_i479.SignUpViewModel>(
         () => _i479.SignUpViewModel(gh<_i934.SignUpUsecase>()));
+    gh.factory<_i213.QuestionsViewModel>(
+        () => _i213.QuestionsViewModel(gh<_i181.QuestionsUsecase>()));
     gh.factory<_i228.ExploreTabViewModel>(
         () => _i228.ExploreTabViewModel(gh<_i997.SubjectUsecase>()));
     return this;

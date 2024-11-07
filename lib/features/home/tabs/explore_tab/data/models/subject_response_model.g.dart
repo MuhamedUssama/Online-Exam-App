@@ -17,4 +17,3 @@ SubjectResponseModel _$SubjectResponseModelFromJson(
           ? null
           : Metadata.fromJson(json['metadata'] as Map<String, dynamic>),
     );
-

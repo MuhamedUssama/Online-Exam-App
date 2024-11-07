@@ -15,3 +15,4 @@ UserProfileEntity _$UserProfileEntityFromJson(Map<String, dynamic> json) =>
           ? null
           : UserEntity.fromJson(json['user'] as Map<String, dynamic>),
     );
+
