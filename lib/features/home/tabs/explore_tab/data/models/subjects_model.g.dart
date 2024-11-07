@@ -12,4 +12,3 @@ SubjectsModel _$SubjectsModelFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String?,
       id: json['_id'] as String?,
     );
-

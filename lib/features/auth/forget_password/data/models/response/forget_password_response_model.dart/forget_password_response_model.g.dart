@@ -13,9 +13,3 @@ ForgetPasswordResponseModel _$ForgetPasswordResponseModelFromJson(
       info: json['info'] as String?,
     );
 
-Map<String, dynamic> _$ForgetPasswordResponseModelToJson(
-        ForgetPasswordResponseModel instance) =>
-    <String, dynamic>{
-      'message': instance.message,
-      'info': instance.info,
-    };

@@ -13,7 +13,8 @@ SubjectResponseEntity _$SubjectResponseEntityFromJson(
           ?.map((e) => SubjectsEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
       message: json['message'] as String?,
-    )..metadata = json['metadata'] == null
-        ? null
-        : MetadataEntity.fromJson(json['metadata'] as Map<String, dynamic>);
+      metadata: json['metadata'] == null
+          ? null
+          : MetadataEntity.fromJson(json['metadata'] as Map<String, dynamic>),
+    );
 

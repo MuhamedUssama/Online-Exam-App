@@ -14,3 +14,4 @@ UserEntity _$UserEntityFromJson(Map<String, dynamic> json) => UserEntity(
       phone: json['phone'] as String?,
       userName: json['username'] as String?,
     );
+

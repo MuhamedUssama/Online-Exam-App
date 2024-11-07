@@ -10,5 +10,6 @@ SubjectsEntity _$SubjectsEntityFromJson(Map<String, dynamic> json) =>
     SubjectsEntity(
       icon: json['icon'] as String?,
       name: json['name'] as String?,
-      id: json['id'] as String?,
+      id: json['_id'] as String?,
     );
+

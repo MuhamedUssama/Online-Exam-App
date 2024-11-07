@@ -11,3 +11,4 @@ LogoutEntity _$LogoutEntityFromJson(Map<String, dynamic> json) => LogoutEntity(
       message: json['message'] as String?,
       stack: json['stack'] as String?,
     );
+

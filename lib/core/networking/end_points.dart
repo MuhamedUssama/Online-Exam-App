@@ -12,4 +12,5 @@ class EndPoints {
   static const String logout = 'auth/logout';
   static const String changePassword = 'auth/changePassword';
   static const String subjectUrl = "subjects";
+  static const String examsUrl = "exams?";
 }

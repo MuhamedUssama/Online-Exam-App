@@ -35,6 +35,11 @@ class TextStyles {
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.regular,
   );
+  static TextStyle font16GreyRegular = TextStyle(
+    color: ColorsManager.grey,
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.regular,
+  );
 
   static TextStyle font16BaseBlueRegular = TextStyle(
     color: ColorsManager.baseBlue,
@@ -48,17 +53,16 @@ class TextStyles {
     fontSize: 20.sp,
     fontWeight: FontWeightHelper.medium,
   );
+
   static TextStyle font20BaseBlueMedium = TextStyle(
     color: ColorsManager.baseBlue,
     fontSize: 20.sp,
     fontWeight: FontWeightHelper.medium,
   );
-
-
-  static TextStyle font20BaseBlueMedium = TextStyle(
+  static TextStyle font14BaseBlueRegular = TextStyle(
     color: ColorsManager.baseBlue,
-    fontSize: 20.sp,
-    fontWeight: FontWeightHelper.medium,
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.regular,
   );
 
   static TextStyle font14PlaceHolderRegular = TextStyle(

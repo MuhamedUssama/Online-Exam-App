@@ -14,3 +14,4 @@ ChangePasswordResponseModel _$ChangePasswordResponseModelFromJson(
       stack: json['stack'] as String?,
       token: json['token'] as String?,
     );
+

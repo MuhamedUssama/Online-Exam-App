@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:online_exam_app/config/router/routes_name.dart';
 import 'package:online_exam_app/features/auth/login_and_signup/ui/signUp/sign_up_screen.dart';
 import 'package:online_exam_app/features/home/home_screen.dart';
+import 'package:online_exam_app/features/question/presentation/questions_screen.dart';
 
 import '../../features/auth/login_and_signup/ui/login/login_screen.dart';
 
 import '../../features/auth/forget_password/presentation/email_verification_screen.dart';
 import '../../features/auth/forget_password/presentation/forget_password_screen.dart';
 import '../../features/auth/forget_password/presentation/reset_password_screen.dart';
+import '../../features/exams/presentation/exams_details/exams details.dart';
+import '../../features/exams/presentation/exams_screen.dart';
 import '../../features/home/tabs/profile_tab/presentation/change_user_password_screen.dart';
 
 class AppRouters {
@@ -45,6 +48,18 @@ class AppRouters {
       case RoutesName.changePasswordScreen:
         return MaterialPageRoute(
           builder: (context) => const ChangeUserPasswordScreen(),
+        );
+      case RoutesName.examsScreen:
+        return MaterialPageRoute(
+          builder: (context) => const ExamsScreen(),
+        );
+      case RoutesName.examsDetailsScreen:
+        return MaterialPageRoute(
+          builder: (context) => const ExamsDetails(),
+        );
+      case RoutesName.questionsScreen:
+        return MaterialPageRoute(
+          builder: (context) =>  const QuestionsScreen(),
         );
 
       default:

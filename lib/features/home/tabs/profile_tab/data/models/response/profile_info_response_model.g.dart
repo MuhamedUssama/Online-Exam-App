@@ -16,3 +16,4 @@ ProfileInfoResponseModel _$ProfileInfoResponseModelFromJson(
           ? null
           : UserResponseModel.fromJson(json['user'] as Map<String, dynamic>),
     );
+

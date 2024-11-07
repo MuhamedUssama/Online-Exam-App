@@ -15,11 +15,3 @@ EmailVerificationResponseModel _$EmailVerificationResponseModelFromJson(
       stack: json['stack'] as String?,
     );
 
-Map<String, dynamic> _$EmailVerificationResponseModelToJson(
-        EmailVerificationResponseModel instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      'message': instance.message,
-      'code': instance.code,
-      'stack': instance.stack,
-    };

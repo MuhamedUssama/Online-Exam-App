@@ -12,9 +12,3 @@ ResetPasswordEntity _$ResetPasswordEntityFromJson(Map<String, dynamic> json) =>
       token: json['token'] as String?,
     );
 
-Map<String, dynamic> _$ResetPasswordEntityToJson(
-        ResetPasswordEntity instance) =>
-    <String, dynamic>{
-      'message': instance.message,
-      'token': instance.token,
-    };

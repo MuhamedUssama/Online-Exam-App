@@ -18,3 +18,4 @@ UserResponseModel _$UserResponseModelFromJson(Map<String, dynamic> json) =>
       passwordChangedAt: json['passwordChangedAt'] as String?,
       role: json['role'] as String?,
     );
+

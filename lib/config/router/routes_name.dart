@@ -6,4 +6,7 @@ class RoutesName {
   static const String resetPasswordScreen = '/resetPasswordScreen';
   static const String homeScreen = '/home';
   static const String changePasswordScreen = '/changePasswordScreen';
+  static const String examsScreen = '/examsScreen';
+  static const String examsDetailsScreen = '/examsDetailsScreen';
+  static const String questionsScreen = '/questionsScreen';
 }
